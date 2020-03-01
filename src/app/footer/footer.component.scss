@@ -1,0 +1,72 @@
+// $bp-largest: 75em; //1200px
+// $bp-large: 62.5em;  //900px
+// $bp-medium: 50em;  //800px
+// $bp-small: 37.5em; //600px
+// $bp-smallest: 31.25em; //500px/16
+// $bp-mobile: 25em; //500px/16
+
+
+.home-footer {
+  padding: 5rem 3rem 1rem 3rem;
+  opacity: 0.9;
+  background-image: linear-gradient(to right top, rgba(0, 0, 0, 0.1), #000), url(../../assets/img/photos/space5.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  color: #fff;
+  font-size: .8rem;
+  vertical-align: bottom;
+  text-align: center;
+  @media only screen and (max-width: 75em) {
+    padding: 5rem 2rem 1rem 2rem ;
+  }
+  @media only screen and (max-width: 62.5em) {
+    padding: 5rem 1rem 1rem 1rem ;
+  }
+
+  &-head {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  &-text {
+    a{
+      color: #fff;
+    }
+    a:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  &-icon-style {
+    font-size: 2rem !important;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    color: #fff;
+    
+    @media only screen and (max-width: 50em) {
+      font-size:  1.5rem !important;
+    }
+  }
+}
+
+.md-margin {
+@media only screen and (max-width: 1000px) {
+  
+  margin-top: 1rem;
+}
+}
+.md-footer {
+@media only screen and (max-width: 769px) {
+  margin: 0 8rem;
+}
+@media only screen and (max-width: 500px) {
+  margin: 0 3rem;
+}
+}
+
+.md-margin-bottom {
+
+@media only screen and (max-width: 1000px) {
+  margin-bottom: .5rem !important;
+}
+}

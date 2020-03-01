@@ -1,0 +1,346 @@
+<app-new-nav></app-new-nav>
+<div class="space">
+    <div>
+      <div class="d-flex justify-content-between caption_tab">
+          <a href="#Overview">Overview</a>
+          <a href="#About">About</a>
+          <a href="#Amenities">Amenities</a>
+          <a href="#Location">Location</a>
+          <a href="#Similar-Spaces">Similar Spaces</a>
+        </div>
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <img class='img_banner' src="assets/img/photos/space2.jpg" alt="Random first slide">
+            <div class="caption_container">
+                <h4 class="caption_text">NGN 3,000 per day</h4>
+                <i class="fa fa-users"></i>
+                <span>&nbsp;25 People</span>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class='img_banner' src="assets/img/photos/space3.jpg" alt="Random first slide">
+            <!-- <div class="d-flex justify-content-between caption_tab">
+                <a href="#Overview">Overview</a>
+                <a href="#About">About</a>
+                <a href="#Amenities">Amenities</a>
+                <a href="#Location">Location</a>
+                <a href="#Similar-Spaces">Similar Spaces</a>
+              </div> -->
+            <div class="caption_container">
+                <h4 class="caption_text">NGN 3,000 per day</h4>
+                <i class="fa fa-users"></i>
+                <span>&nbsp;25 People</span>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class='img_banner' src="assets/img/photos/space5.jpg" alt="Random first slide">
+            <!-- <div class="d-flex justify-content-between caption_tab">
+                <a href="#Overview">Overview</a>
+                <a href="#About">About</a>
+                <a href="#Amenities">Amenities</a>
+                <a href="#Location">Location</a>
+                <a href="#Similar-Spaces">Similar Spaces</a>
+              </div> -->
+            <div class="caption_container">
+                <h4 class="caption_text">NGN 3,000 per day</h4>
+                <i class="fa fa-users"></i>
+                <span>&nbsp;25 People</span>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="container-fluid space_container mt-4">
+          <div class="row">
+            <div class="col-sm-12 mb-2">
+              <p class="text-bold-200 space_dash">-</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7">
+                <h1 class="space_head">{{thisSpace['name']}}</h1>
+                <div class="row lead">
+                  <div class="col-md-3">
+                    <p>{{thisSpace['location']}}</p>
+                  </div>
+                  <div class="col-md-5">
+                    <p>{{thisSpace['size']}} Persons</p>
+                  </div>
+                  <div class="col-md-4">
+                    <i class="fa fa-heart"></i>
+                    <span class="fav_size">&nbsp; <a href="">Add to my favorites</a></span>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <ngb-rating max="5" [(rate)]="currentRate"></ngb-rating>
+                  <p><b>&nbsp; {{currentRate}}</b></p>
+                </div>
+                <div class="d-flex flex-column align-content-center" id="About">
+                  <h3 class="lead text-bold-700 mb-3 mt-4">About this Space</h3>
+                  <p class="align-self-center">{{thisSpace['description']}}
+                  </p>
+                </div>
+                <div id="Amenities">
+                    <h3 class="lead text-bold-700 mb-3 mt-4">Amenities</h3>
+                </div>
+                <div class="row mb-4">
+                    <div *ngFor='let amenity of thisSpace["amenities"]' class="col-md-4 col-sm-12">    
+                      <div class="custom-control custom-checkbox">
+                        <input checked='true' disabled='true' type="checkbox" class="custom-control-input lead" id="defaultUnchecked">
+                        <label class="custom-control-label text-bold-600" for="defaultUnchecked">&nbsp; {{amenity['name']}}</label>
+                      </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-column" id="Location">
+                    <h3 class="lead text-bold-700 mb-3 mt-4">Location</h3>
+                <!-- <ngb-datepicker [minDate]="{year: 2019, month: 1, day: 1}"
+                                [maxDate]="{year: 2048, month: 12, day: 31}"
+                                [markDisabled]="isDisabled">
+                </ngb-datepicker> -->
+                    <!-- <section id="map">
+                        <div class="row text-left">
+                            <div class="col-sm-12">
+                                <div class="content-header">Google Map</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="card-body mt-2">
+                                            <agm-map [latitude]="lat" [longitude]="lng">
+                                                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                            </agm-map>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section> -->
+                </div>
+            </div>
+            <div class="col-md-5">
+              <div class="space_bg">
+                <div class="option_input mt-4">
+                    <div class="row">
+                        <div class="col-6">
+                          <p>Date From</p>
+                        </div>
+                        <div class="col-6">
+                          <p>Date to</p>
+                        </div>  
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="row">
+                          <div class="col-6">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateFrom" ngbDatepicker
+                              #d1="ngbDatepicker" >
+                            <div class="input-group-append">
+                              <div class="input-group-text" (click)="d1.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateTo" ngbDatepicker
+                              #d2="ngbDatepicker" >
+                            <div class="input-group-append">
+                              <div class="input-group-text" (click)="d2.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <p class="mt-4">Model: {{ date | json }}</p> -->
+                    </div>
+                <!-- </div> -->
+                <div class="option_input mt-4">
+                    <div class="row">
+                        <div class="col-7">
+                          <p>Time From</p>
+                        </div>
+                        <div class="col-5">
+                          <p>Time To</p>
+                        </div>  
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="row">
+                          <div class="col-6">
+                              <ngb-timepicker [(ngModel)]="timeFrom" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+                          </div>
+                          <div class="col-6">
+                              <ngb-timepicker [(ngModel)]="timeTo" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+                          </div>  
+                      </div>
+                    </div>
+                </div>
+                <!-- <div class="mt-2">
+                  <i class="fa fa-plus-circle"></i>
+                  <span>&nbsp; <a href="">Add more date and time</a></span>
+                </div> -->
+                <div class="mb-3 mt-4">
+                  <p class="space_text">Other Clients booking for this space</p>
+                  <div class="d-flex justify-content-between">
+                    <div *ngIf='bookingTimes.length>0'>
+                      <div *ngFor='let bookingTime of bookingTimes'>
+                        <i class="fas fa-clock"></i>
+                        <span class="">&nbsp; {{bookingTime['from'] | date: ' h:mm a, MMM, d'}} - {{bookingTime['to'] | date: ' h:mm a, MMM, d, y'}}</span>
+                        <br>
+                      </div>
+                    </div>
+                    <!-- <div class="card_time_format">
+                      <span>11:30AM</span>
+                    </div>
+                    <div>
+                      <span>12:00AM</span>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                      <button [disabled]='!dateFrom || !dateTo' (click)='checkAvailability()' type="button" class="btn btn-raised px-2 mb-0">
+                        <span class="d-lg-inline-block d-none space_btn">Check Availablity</span>
+                      </button>
+                    </div>
+                    <div>
+                      <button (click)='bookSpace()' type="button" class="btn btn-raised px-2 mb-0">
+                        <span class="d-lg-inline-block d-none space_btn">Book now</span>
+                      </button>
+                    </div>
+                </div>
+              </div>
+            </div>
+                <div class="space_bg">
+                  <h3 class="lead text-bold-700 mb-3 mt-4">Cancellation Rules</h3>
+                </div>
+      </div>
+      <div class="d-flex flex-column" id="Similar-Spaces">
+        <h3 class="lead text-bold-700 mb-3 mt-4">Similar Spaces</h3>
+        <div class="card-container">
+            <div class="row text-left" matchHeight="card">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="card">
+                      <div class="card-content card-bg hct">
+                        <div class="card-img">
+                          <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                          <h4 class="card-title home-card-title">NGN 3,000 per day</h4>
+                          <a class="btn btn-floating halfway-fab bg-warning"><i class="ft-heart"></i></a>
+                        </div>
+                        <div class="card-body card-body-pad">
+                          <div class="row justify-content-between">
+                            <div class="col-6">
+                                <h3 class="home-card-text">Landmark Towers</h3>
+                            </div>
+                                <div class="col-3">
+                                  <ngb-rating max="5" [(rate)]="firstRating"></ngb-rating>
+                                </div>
+                                <div class="col-3">
+                                    <p><b>{{firstRating}}</b></p>
+                                </div>
+                          </div>
+                          <p class="card-text">Creative workspace in Lekki overlooking the atlantic ocean.</p>
+                          <div class="card-footer card-footer-pad">
+                              <p class="space_text">Space Availability</p>
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <i class="fa fa-clock"></i>
+                                   <span>&nbsp; 8:30AM</span>
+                                </div>
+                                <div class="card_time_format">
+                                  <span>11:30AM</span>
+                                </div>
+                                <div>
+                                  <span>12:00AM</span>
+                                </div>
+                              </div>    
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="card">
+                      <div class="card-content card-bg hct">
+                        <div class="card-img">
+                          <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                          <h4 class="card-title home-card-title">NGN 3,000 per day</h4>
+                          <a class="btn btn-floating halfway-fab bg-warning"><i class="ft-heart"></i></a>
+                        </div>
+                        <div class="card-body card-body-pad">
+                          <div class="row justify-content-between">
+                            <div class="col-6">
+                                <h3 class="home-card-text">Landmark Towers</h3>
+                            </div>
+                                <div class="col-3">
+                                  <ngb-rating max="5" [(rate)]="firstRating"></ngb-rating>
+                                </div>
+                                <div class="col-3">
+                                    <p><b>{{firstRating}}</b></p>
+                                </div>
+                          </div>
+                          <p class="card-text">Creative workspace in Lekki overlooking the atlantic ocean.</p>
+                          <div class="card-footer card-footer-pad">
+                              <p class="space_text">Space Availability</p>
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <i class="fa fa-clock"></i>
+                                   <span>&nbsp; 8:30AM</span>
+                                </div>
+                                <div class="card_time_format">
+                                  <span>11:30AM</span>
+                                </div>
+                                <div>
+                                  <span>12:00AM</span>
+                                </div>
+                              </div>    
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="card">
+                      <div class="card-content card-bg hct">
+                        <div class="card-img">
+                          <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                          <h4 class="card-title home-card-title">NGN 3,000 per day</h4>
+                          <a class="btn btn-floating halfway-fab bg-warning"><i class="ft-heart"></i></a>
+                        </div>
+                        <div class="card-body card-body-pad">
+                          <div class="row justify-content-between">
+                            <div class="col-6">
+                                <h3 class="home-card-text">Landmark Towers</h3>
+                            </div>
+                                <div class="col-3">
+                                  <ngb-rating max="5" [(rate)]="firstRating"></ngb-rating>
+                                </div>
+                                <div class="col-3">
+                                    <p><b>{{firstRating}}</b></p>
+                                </div>
+                          </div>
+                          <p class="card-text">Creative workspace in Lekki overlooking the atlantic ocean.</p>
+                          <div class="card-footer card-footer-pad">
+                              <p class="space_text">Space Availability</p>
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <i class="fa fa-clock"></i>
+                                   <span>&nbsp; 8:30AM</span>
+                                </div>
+                                <div class="card_time_format">
+                                  <span>11:30AM</span>
+                                </div>
+                                <div>
+                                  <span>12:00AM</span>
+                                </div>
+                              </div>    
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+</div>
+  </div>
+</div>
+<app-footer></app-footer>

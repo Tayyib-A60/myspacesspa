@@ -1,0 +1,477 @@
+<app-new-nav></app-new-nav>
+<div *ngIf='loaded' class="space">
+    <div>
+      <div class="d-flex caption_tab">
+          <a href='#overview'>Overview</a>
+          <a href='#about'>About</a>
+          <a href='#amenities'>Amenities</a>
+          <a href='#location'>Location</a>
+          <a href='#similar'>Similar Spaces</a>
+      </div>
+        <ngb-carousel>
+          <ng-template *ngFor='let photo of thisSpace.photos' ngbSlide>
+            <img class='img_banner' [src]="photo?.fileName" alt="Random first slide">
+            <div class="caption_container">
+                <h4 class="caption_text">NGN {{thisSpace?.price}}</h4>
+                <i class="fa fa-users"></i>
+                <span>&nbsp;{{thisSpace?.size}} People</span>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="container-fluid space_container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-2">
+              <p class="space_head">{{thisSpace?.name}}</p>
+              <!-- <button class="btn btn-outline-secondary mt-4 mb-4"><i class="fa fa-upload"></i>&nbsp; {{thisSpace?.typ}}</button> -->
+              <div class="d-flex justify-content-between space_content">
+                <div class="space_content_wrapper">
+                  <div class="pb-3 space_content_wrapper-1">Capacity</div>
+                  <i class="fa fa-users fa-2x space_content_wrapper-2"></i>
+                  <div class="pt-3 space_content_wrapper-3">{{thisSpace?.size}}<span>&nbsp; people</span></div>
+                </div>
+                <div class="space_content_wrapper">
+                  <div class="pb-3 space_content_wrapper-1">Space type</div>
+                  <i class="fa fa-users fa-2x space_content_wrapper-2"></i>
+                  <!-- <div class="pt-3 space_content_wrapper-3"><span>&nbsp; {{thisSpace?.typeId}}</span></div> -->
+                </div>
+                <div class="space_content_wrapper">
+                  <div class="pb-3 space_content_wrapper-1">Availability</div>
+                  <i style="opacity: 0;" class="fa fa-users fa-2x space_content_wrapper-2"></i>
+                  <div class="pt-3 space_content_wrapper-3"><span>&nbsp; Availability</span></div>
+                </div>
+              </div>
+              <div class="mt-4 mb-4">
+                  <h4 class="text-bold-500">{{thisSpace?.locationAddress}}</h4>
+              </div>
+              <div class="mt-4">
+                <h4 class="text-bold-500">Description</h4>
+                <div class="d-flex">
+                    <div class="space_text">
+                      <p>{{thisSpace?.description}}</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="mt-4">
+                  <h4 class="text-bold-500">Amenities</h4>
+                  <div class="d-flex">
+                      <div *ngFor='let amenity of thisSpace.amenities' class="custom-control custom-checkbox pr-4 space_content">
+                              <input (change)='amenityChecked($event)' [value]='amenity["id"]' type="checkbox" class="custom-control-input" [id]="amenity['id']">
+                              <label class="custom-control-label" [for]="amenity['id']">&nbsp; {{amenity?.name}} ({{amenity.price == 0 ? 'Free' : amenity?.price | currency : 'NGN' : 'symbol-narrow'}})</label>
+                      </div>
+                  </div>
+              </div>
+              
+            </div>
+            <div class="col-md-6 mb-2">
+                <div>
+                  <h4>Book/Reserve space here</h4>
+                      <div class="option_input mt-4">
+                        <div class="row">
+                          <div class="col-6">
+                            <p>I need this space on</p>
+                          </div>
+                              <div class="col-6">
+                                <p>For</p>
+                              </div>  
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div class="row">
+                              <div class="col-6">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateFrom" ngbDatepicker
+                                #d1="ngbDatepicker" (click)="d1.toggle()">
+                              </div>
+                              <div class="col-6">
+                                <input class="form-control" type='number' placeholder="no of persons" name="dp" [(ngModel)]="numberOfGuests">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="option_input mt-4">
+                          <div class="row">
+                              <div class="col-6">
+                                <p>Date From</p>
+                              </div>
+                              <div class="col-6">
+                                <p>Date to</p>
+                              </div>  
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div class="row">
+                                <div class="col-6">
+                                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateFrom" ngbDatepicker disabled='true'>
+                                </div>
+                                <div class="col-6">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dateTo" ngbDatepicker
+                                    #d2="ngbDatepicker" (click)="d2.toggle()">
+                                </div>
+                              </div>
+                          </div></div>
+                      <div *ngIf='thisSpace.selectedPricingOption === 0' class="option_input mt-4">
+                          <div class="row">
+                              <div class="col-7">
+                                <p>Time From</p>
+                              </div>
+                              <div class="col-5">
+                                <p>Time To</p>
+                              </div>  
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div class="row">
+                                <div class="col-6">
+                                    <ngb-timepicker [(ngModel)]="timeFrom" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+                                </div>
+                                <div class="col-6">
+                                    <ngb-timepicker [(ngModel)]="timeTo" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+                                </div>  
+                            </div>
+                          </div>
+                      </div>
+                      <div class="mb-3 mt-4">
+                        <h4 *ngIf='bookingTimes.length>0'>Other Clients booking for this space</h4>
+                        <div class="d-flex justify-content-between">
+                          <div class="block" *ngFor='let days of timeToDisplayArray'>
+                            <span class="day">{{days.day}}</span>
+                            <hr>
+                            <div class="row">
+                              <div class="block text-left" *ngFor='let time of days.times'>
+                                <!-- <i class="fas fa-clock"></i> -->
+                              <span [class]="time.available? 'available': 'booked'">&nbsp;{{time?.from}}:00 Hrs - {{time?.to}}:00 Hrs</span>
+                                <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                          <div class="d-flex">
+                            <div class="custom-control custom-checkbox pr-4 space_content">
+                                <input value='' (click)='checkAvailability($event)' type="checkbox" class="custom-control-input" id="checkAvailability">
+                                <label class="custom-control-label" for="checkAvailability">Check availablity</label>
+                            </div>
+                          </div>
+                      </div>
+                      <!-- <div class="d-flex justify-content-between">
+                          <div class="d-flex">
+                            <div class="custom-control custom-checkbox pr-4 space_content">
+                                <button (click)='check()'>Check</button>
+                            </div>
+                          </div>
+                      </div> -->
+                        <br>
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-outline-primary" (click)="open(content)">Add more date and time</button>
+                        </div>
+                      </div>
+                      <div class="card-content">
+                          <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Add more booking</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="option_input mt-4">
+                                    <div class="row">
+                                      <div class="col-6">
+                                        <p>I need this space on</p>
+                                      </div>
+                                          <div class="col-6">
+                                            <p>For</p>
+                                          </div>  
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        <div class="row">
+                                          <div class="col-6">
+                                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modalDateFrom" ngbDatepicker
+                                            #d3="ngbDatepicker" (click)="d3.toggle()">
+                                          </div>
+                                          <div class="col-6">
+                                            <input class="form-control" type='number' placeholder="no of persons" name="dp" [(ngModel)]="numberOfGuests">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="option_input mt-4">
+                                      <div class="row">
+                                          <div class="col-6">
+                                            <p>Date From</p>
+                                          </div>
+                                          <div class="col-6">
+                                            <p>Date to</p>
+                                          </div>  
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        <div class="row">
+                                            <div class="col-6">
+                                              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modalDateFrom" ngbDatepicker disabled='true'>
+                                            </div>
+                                            <div class="col-6">
+                                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modalDateTo" ngbDatepicker
+                                                #d4="ngbDatepicker" (click)="d4.toggle()">
+                                            </div>
+                                          </div>
+                                      </div></div>
+                                  <div *ngIf='thisSpace.selectedPricingOption == 0' class="option_input mt-4">
+                                      <div class="row">
+                                          <div class="col-7">
+                                            <p>Time From</p>
+                                          </div>
+                                          <div class="col-5">
+                                            <p>Time To</p>
+                                          </div>  
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <ngb-timepicker [(ngModel)]="modalTimeFrom" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+                                            </div>
+                                            <div class="col-6">
+                                                <ngb-timepicker [(ngModel)]="modalTimeTo" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+                                            </div>  
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="mb-3 mt-4">
+                                    <h4 *ngIf='bookingTimes.length>0'>Other Clients booking for this space</h4>
+                                    <div class="d-flex justify-content-between">
+                                      <div class="block" *ngFor='let days of modalTimeToDisplayArray'>
+                                        <span class="day">{{days.day}}</span>
+                                        <hr>
+                                        <div class="row">
+                                          <div class="block text-left" *ngFor='let time of days.times'>
+                                          <span [class]="time.available? 'available': 'booked'">&nbsp;{{time?.from}}:00 Hrs - {{time?.to}}:00 Hrs</span>
+                                            <br>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                      <div class="d-flex">
+                                        <div class="custom-control custom-checkbox pr-4 space_content">
+                                            <input value='' (click)='checkModalAvailability($event)' type="checkbox" class="custom-control-input" id="checkModalAvailability">
+                                            <label class="custom-control-label" for="checkModalAvailability">Check availablity</label>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                      <div class="d-flex">
+                                        <button [disabled]='!modalDateFrom || !modalDateTo' (click)='addAdditionalBooking()'   type="button" class="btn btn-raised px-2 mb-0"       style="background-color: #565f73; color: #f3f3f3">
+                                              <span class="d-lg-inline-block space_btn">Add to booking</span>
+                                        </button>
+                                      </div>
+                                  </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                            </div>
+                          </ng-template>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                          <div>
+                            <button [disabled]='!dateFrom || !dateTo' (click)='reserveSpace()' type="button" class="btn btn-raised px-2 mb-0" style="background-color: #565f73; color: #f3f3f3">
+                              <span class="d-lg-inline-block space_btn">Book now</span>
+                            </button>
+                          </div>
+                          <!-- <div>
+                            <button (click)='reserveSpace()' type="button" class="btn btn-raised px-2 mb-0"style="background-color: #565f73; color: #f3f3f3">
+                              <span class="d-lg-inline-block space_btn">Reserve space</span>
+                            </button>
+                          </div> -->
+                      </div>
+                      <br>
+                    </div>
+                <br>
+                <div class="space_form space_content space_right-bg px-3 pt-3 pb-3">
+                  <div>
+                    <i class="ft-credit-card"></i>
+                    <span class="h4 text-bold-500"> Total Cost</span>
+                  </div>
+                  <div class="space_content">
+                      <p class="space_form-input-data space_right-cursor mb-0">Cost&nbsp;<span class="text-bold-500">{{totalCost | currency : 'NGN' : 'symbol-narrow'}} </span></p>
+                  </div>
+                </div>
+              <br>
+                <div class="space_form space_content space_right-bg px-3 pt-3 pb-3">
+                  <div>
+                    <i class="ft-menu"></i>
+                    <span class="h4 text-bold-500">Need to know</span>
+                  </div>
+                  <div class="space_content">
+                      <h4 class="space_form-input-field text-bold-500 mt-3 pb-1">Duration</h4>
+                      <p class="space_form-input-data space_right-cursor mb-0">Minimum term: &nbsp; <span class="text-bold-500">{{thisSpace?.minimumTerm}}</span>
+                      </p>
+                  </div>
+                  <div class="space_content">
+                      <h4 class="space_form-input-field text-bold-500 mt-3 pb-1">Pricing options</h4>
+                      <!-- <p *ngIf='thisSpace?.selectedPricingOption?.option == "Per Hour"' class="space_form-input-data space_right-cursor mb-0">Per Hour: &nbsp;<span class="text-bold-500">{{thisSpace?.pricePH?.price | currency : 'NGN' : 'symbol-narrow'}}</span></p>
+                      <p *ngIf='thisSpace?.selectedPricingOption?.option == "Per Day"' class="space_form-input-data space_right-cursor mb-0">Per Day: &nbsp;<span class="text-bold-500">{{thisSpace?.pricePD?.price | currency : 'NGN' : 'symbol-narrow'}}</span></p>
+                      <p *ngIf='thisSpace?.selectedPricingOption?.option == "Per Week"' class="space_form-input-data space_right-cursor mb-0">Per Week: &nbsp;<span class="text-bold-500">{{thisSpace?.pricePW?.price | currency : 'NGN' : 'symbol-narrow'}}</span></p> -->
+                  </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div id="location" class="jumbotron">
+    <agm-map [latitude]='latitude' [longitude]='longitude'>
+          <agm-marker [latitude]='thisSpace?.lat' [longitude]='thisSpace?.long'></agm-marker>
+    </agm-map>
+</div>
+<div id="similar" class="space_container">
+  <h2 class="text-bold-700 mb-3">Discover similar spaces you’ll love.</h2>
+  <div class="d-flex justify-content-between">
+    <div class="display_container mr-2">
+      <div>
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <img class='img_baner' src="assets/img/photos/space2.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class='img_bnner' src="assets/img/photos/space5.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="display_body">
+      <div class="mb-1">
+       <div class="mt-1">
+         <a href="/" class="display_body-btn">Workshop</a>
+       </div>
+       <div class="display_text-1">
+          <h5 class="mt-2 mb-2 text-bold-500"><a href="">The Space</a></h5>
+          <p><a href="">421 Lygon street</a></p>
+          <p class="text-bold-500"><a href="">Bruswick East VIC 3057</a></p>
+        </div>
+         <div class="display_icon">
+           <i class="fa fa-users"></i>
+           <span>&nbsp; 40</span>
+         </div>
+      </div>
+    </div>
+    <div class="display_text-2">
+          <a href="" class="display_sub-text text-bold-400">View <span style="vertical-align: middle;">&#62;</span></a>
+    </div>
+    </div>
+    <div class="display_container mr-2">
+      <div>
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <img class='img_baner' src="assets/img/photos/space2.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class='img_bnner' src="assets/img/photos/space5.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="display_body">
+      <div class="mb-1">
+       <div class="mt-1">
+         <a href="/" class="display_body-btn">Workshop</a>
+       </div>
+       <div class="display_text-1">
+          <h5 class="mt-2 mb-2 text-bold-500"><a href="">The Space</a></h5>
+          <p><a href="">421 Lygon street</a></p>
+          <p class="text-bold-500"><a href="">Bruswick East VIC 3057</a></p>
+        </div>
+         <div class="display_icon">
+           <i class="fa fa-users"></i>
+           <span>&nbsp; 40</span>
+         </div>
+      </div>
+    </div>
+    <div class="display_text-2">
+          <a href="" class="display_sub-text text-bold-400">View <span style="vertical-align: middle;">&#62;</span></a>
+    </div>
+    </div>
+    <div class="display_container mr-2">
+      <div>
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <img class='img_baner' src="assets/img/photos/space2.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class='img_bnner' src="assets/img/photos/space5.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="display_body">
+      <div class="mb-1">
+       <div class="mt-1">
+         <a href="/" class="display_body-btn">Workshop</a>
+       </div>
+       <div class="display_text-1">
+          <h5 class="mt-2 mb-2 text-bold-500"><a href="">The Space</a></h5>
+          <p><a href="">421 Lygon street</a></p>
+          <p class="text-bold-500"><a href="">Bruswick East VIC 3057</a></p>
+        </div>
+         <div class="display_icon">
+           <i class="fa fa-users"></i>
+           <span>&nbsp; 40</span>
+         </div>
+      </div>
+    </div>
+    <div class="display_text-2">
+          <a href="" class="display_sub-text text-bold-400">View <span style="vertical-align: middle;">&#62;</span></a>
+    </div>
+    </div>
+    <div class="display_container">
+      <div>
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <img class='img_baner' src="assets/img/photos/space2.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img class='img_bnner' src="assets/img/photos/space5.jpg" alt="Random first slide" width="100%">
+            <div class="display_caption">
+                <h4 class="display_caption-text">$500 / day</h4>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div class="display_body">
+      <div class="mb-1">
+       <div class="mt-1">
+         <a href="/" class="display_body-btn">Workshop</a>
+       </div>
+       <div class="display_text-1">
+          <h5 class="mt-2 mb-2 text-bold-500"><a href="">The Space</a></h5>
+          <p><a href="">421 Lygon street</a></p>
+          <p class="text-bold-500"><a href="">Bruswick East VIC 3057</a></p>
+        </div>
+         <div class="display_icon">
+           <i class="fa fa-users"></i>
+           <span>&nbsp; 40</span>
+         </div>
+      </div>
+    </div>
+    <div class="display_text-2">
+          <a href="" class="display_sub-text text-bold-400">View <span style="vertical-align: middle;">&#62;</span></a>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

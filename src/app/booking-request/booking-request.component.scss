@@ -1,0 +1,82 @@
+.booking {
+    
+    &_container {
+        padding: 4rem 1rem  3rem 6rem;
+        background-color: #fff;
+    }
+    
+    &_head{
+        font-size: 1.7rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+    }
+    &_sub-head {
+        line-height: .5;
+    }
+    
+    &_dash {
+        font-size: 5rem;
+    }
+    &_label {
+        font-size: .8rem;
+    }
+    &_btn {
+        // border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+        padding: .9rem 2.5rem !important;
+        border-radius: 25px;
+    }
+}
+
+.card .btn-floating {
+    background-color: #fff !important;
+}
+
+.card .btn-floating i {
+    color: rgba(#000, 0.9) !important;
+    background-color: #fff;
+    font-size: 1.5rem !important;
+} 
+.card {
+    &-bg {
+        padding: 15px;
+        // border: 15px;
+        border-radius: 10px;
+        box-shadow: 0 -3px 44px -15px rgba(0, 0, 0, 0.1);
+    }
+    &-radius {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+}
+
+.home {
+    &_body-pad {
+        padding: 1.8rem .5rem 1rem .5rem;
+    }
+      
+    &_card-footer {
+        padding: 1rem 0 0 0;
+    }
+
+    &-card {
+        &-title {
+            background-color: #000;
+            border-radius: 8px;
+            bottom: 15px !important;
+            left: 15px !important;
+            padding: 10px !important;
+            font-size: .9rem !important;
+          
+        }
+        //   &-margin {
+        //     margin-top: -5em !important;
+        //   }
+        &-text {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+    
+}

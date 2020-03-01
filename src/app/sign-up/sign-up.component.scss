@@ -1,0 +1,63 @@
+.signUp {
+    background-image: url(../../assets/img/photos/space5.jpg);
+    background-position: cover;
+    height: 100vh;
+
+    &-nav {
+        margin: 4rem 10rem;
+        font-size: 1rem;
+        font-weight: 500;
+        
+        a {
+            color: #fff !important;
+        }
+    }
+
+    &-btn {
+        background-color: #000;
+        color: #fff;
+        padding: .9rem 2.5rem !important;
+        border-radius: 25px;
+    }
+    &_text {
+        font-size: 1.5rem;
+    }
+    &_dash {
+        font-size: 1rem; 
+        margin-left: 2rem;
+    }
+    &_col {
+        background-color: #fff; 
+        padding: 6rem 2rem;
+    }
+    &_sub-head {
+        line-height: .6;
+    }
+    &_form {
+        box-shadow: 0 25px 25px -38px #aaa;
+    }
+    &_data {
+        border-left: 3px solid #000;
+    }
+}
+
+.form-data {
+    border: 1px solid #aaa; 
+    padding: .2rem 1rem; 
+    border-radius: 4px;
+
+    &-input {
+        border: none; 
+        padding: 0;
+        font-weight: 100;
+        font-size: 1rem;
+        
+    }
+    &-label {
+        margin: 0;
+        font-weight: 100;
+        font-size: .7rem;
+        color: #aaa;
+        
+    }
+}

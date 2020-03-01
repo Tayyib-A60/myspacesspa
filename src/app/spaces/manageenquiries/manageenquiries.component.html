@@ -1,0 +1,89 @@
+<!--Extended Table starts-->
+<div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">Enquiries</div>
+      <p class="content-sub-header">Manage enquiries made by potential clients</p>
+    </div>
+</div>
+  <!--Shopping cart starts-->
+  <section id="shopping-cart">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Enquiry Management</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <table class="table table-responsive-md text-center">
+                <thead>
+                  <tr>
+                    <th>Space | Client</th>
+                    <th>Comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let space of data'>
+                    <td>
+                      <div class="row text-left" matchHeight="card">
+                          <div class="col-xl-5 col-lg-12">
+                            <div class="card horizontal">
+                              <div class="card-content d-flex justify-content-between">
+                                <div class="card-img">
+                                    <div class="card-img">
+                                        <img class="card-img-top img-fluid space-reserved-img" src="assets/img/photos/06.jpg" alt="Card image cap">
+                                      </div>
+                                </div>
+                                <div style="margin-left: -6rem" class="card-stacked align-self-center">
+                                  <div class="px-3">
+                                    <h4 class="card-title">Card title</h4>
+                                    <p class="card-text">Sweet halvah dragée jelly-o halvah carrot cake oat cake.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xl-5 col-lg-12">
+                            <div class="card horizontal">
+                              <div class="card-content d-flex justify-content-between">
+                                <div class="card-img">
+                                    <div class="card-img">
+                                        <img class="card-img-top rounded-circle img-border gradient-summer width-100" src="assets/img/photos/06.jpg" alt="Card image cap">
+                                      </div>
+                                </div>
+                                <div style="margin-left: -6rem" class="card-stacked align-self-center">
+                                  <div class="px-3">
+                                    <h4 class="card-title">Card title</h4>
+                                    <p class="card-text">Sweet halvah dragée jelly-o halvah carrot cake oat cake.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="col-xl-2 col-lg-12">
+                          <div class="card horizontal">
+                            <div class="card-content d-flex justify-content-between">
+                              <div style="margin-left: -6rem" class="card-stacked align-self-center">
+                                <div class="px-3">
+                                  <p class="card-text">Customer's comment</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </td>
+                    <hr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Shopping cart ends-->
+  

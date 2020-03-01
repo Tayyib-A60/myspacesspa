@@ -1,0 +1,325 @@
+// $bp-largest: 75em; //1200px
+// $bp-large: 62.5em;  //900px
+// $bp-medium: 50em;  //800px
+// $bp-small: 37.5em; //600px
+// $bp-smallest: 31.25em; //500px/16
+// $bp-mobile: 25em; //500px/16
+
+.nav {
+
+  // &_container {
+
+  // }
+  &_logo {
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  &_btn {
+      
+      background-color: #000;
+      color: #fff;
+      padding: .5rem 1.5rem;
+      border-radius: 5rem;
+      margin: 0 1.5rem;
+      @media only screen and (max-width: 50em) {
+        font-size: .8rem !important;
+        margin-top: 1rem
+      }
+  }
+
+}
+
+.space {
+
+  &_head {
+    padding-top: 1rem;
+
+    .space_text {
+      display: block;
+      line-height: 1;
+      font-size: 3.25rem;
+      font-weight: 600;
+      color: #333f48;
+      letter-spacing: -0.125rem;
+
+      @media only screen and (max-width: 55em) {
+        font-size: 3rem;
+      }
+      @media only screen and (max-width: 47em) {
+        font-size: 2.8rem;
+      }
+      @media only screen and (max-width: 37.5em) {
+        font-size: 2.5rem;
+      }
+      @media only screen and (max-width: 31.25em) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &_input {
+    border-radius: 25rem;
+    background-color: rgba(0,0,0,0);
+    border: 2px solid #c1c5c8;
+    margin: 3rem 0;
+    padding-left: 1rem;
+    vertical-align: baseline;
+    
+    input, select {
+      border: none;
+      border-right: 2px solid #c1c5c8;
+      color: #565f73;
+      background-color: inherit;
+      padding: 1rem 0;
+      width: 60%;
+      padding-right: 1rem;
+      font-size: 1.4rem;
+      
+      @media only screen and (max-width: 75em) {
+        width: 55%;
+        
+      }
+      @media only screen and (max-width: 62.5em) {
+        width: 50%;
+      }
+      @media only screen and (max-width: 50em) {
+        font-size: 1rem;
+      }
+      
+      
+    }
+    select {
+      border: none;
+      width: 20%;
+      padding-left: 1rem;
+      margin-right: 1rem;
+      
+    }
+
+    span {
+      font-size: 2.5rem;
+      font-weight: 100;
+    }
+
+    
+  }
+
+  &_icon-1 {
+    vertical-align: baseline;
+    color: inherit;
+    font-size: 1.2rem;
+    // height: 1em;
+    // width: 1em;
+    margin: 0 1rem;
+  }
+
+  &_img {
+    // background-image: url(../../assets//img/photos/space3.jpg);
+    height: 45vh;
+    width: 100%;
+    max-height: 28.125rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.bar-menu {
+  background-color: #fff;
+  // width: 40%;
+}
+
+// fonticon-container:hover i {
+//   color: #009DA0;
+//   font-size: 2.9rem;
+//   -webkit-transform: scale(1.3);
+//   transform: scale(1.3);
+// }
+
+// .bar-item {
+//   display: block;
+//   width: 100%;
+//   padding: 0.25rem 1.5rem;
+//   clear: both;
+//   font-weight: 400;
+//   color: #212529;
+//   text-align: inherit;
+//   white-space: nowrap;
+//   background-color: transparent;
+//   border: 0;
+//   border-bottom: 1px solid #e9ecef;
+// }
+
+// .fonticon-wrap {
+//   width: 0 !important;
+// }
+// .dropdown-item:focus {
+//   color: none !important;
+//   outline: none !important;
+//   border: none !important;
+// }
+
+// .font-container {
+//   border-top: 1px solid #e9ecef;
+
+//   &:hover span {
+//     color: #009DA0;
+//     font-size: 1.3rem;
+//     transform: scale(1.3);
+//   }
+  
+    
+
+//     .fonticon-wrap {
+//       border-bottom: 1px solid #e9ecef;
+//       float: left ;
+//       width: 0px !important;
+//     height: 35px !important;
+//     line-height: normal !important;
+    
+//     border-radius: 0.1875rem;
+//     margin-right: 0 !important;
+//     margin-bottom: 0 !important;
+//       span {
+//         font-size: 1.3rem;
+//         transition: all .2s ease-in-out;
+//       }
+     
+//       i {
+//         font-size: 2rem !important;
+//         transition: all .2s ease-in-out;
+//       }
+//     }
+// }
+
+.menu {
+
+  &-toggler {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  &-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+  &-list {
+    
+    // margin-top: .7rem;
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+  
+    &-item {
+      padding: 0.5rem 1.5rem !important;
+      border-bottom: 1px solid #e9ecef !important;
+    }
+  }
+}
+
+// List your space section
+.list_space {
+
+  height: 20rem;
+  @media only screen and (max-width: 47.9375em) {
+    height: 35rem;
+  }
+
+  &_btn {
+    border: none;
+    // border: 1px solid #379EB1;
+    background-color: #379EB1;
+  }
+
+  &_img {
+
+    // height:calc(100% - 145px);
+    height: 300px;
+    width: 90%;
+    background-size: cover;
+    background-position: center;
+    @media only screen and (max-width: 47.9375em) {
+      width: 100%;
+      height: 230px;
+      // padding: 0 2rem;
+    }
+  }
+  
+  &_margin {
+    @media only screen and (max-width: 62.5em) {
+      padding-top: 2rem !important;
+    }
+  }
+  &_sm_text {
+    @media only screen and (max-width: 62.5em) {
+      font-size: 2rem;
+    }
+    @media only screen and (max-width: 25em) {
+      font-size: 1.3rem;
+    }
+  }
+}
+// List your space section
+// Trusted and verified space manager section
+.space_manager {
+
+  p {
+    
+    line-height: 1.9;
+  }
+
+  &_icon {
+    color: #379EB1;
+  }
+
+  &_text {
+    display: block;
+    line-height: .6 !important;
+    font-size: 1.5rem;
+    font-weight: 500;
+    // color: #333f48;
+    color: #000;
+    letter-spacing: normal;
+    @media only screen and (max-width: 75em) {
+      font-size: 1.35rem;
+    }
+    @media only screen and (max-width: 62.5em) {
+      font-size: 1.3rem;
+      line-height: .3 !important;
+    }
+    @media only screen and (max-width: 65em) {
+      font-size: .85rem;
+      // line-height: .3 !important;
+    }
+    @media only screen and (max-width: 31.25em) {
+      font-size: 1.2rem;
+      // line-height: .3 !important;
+    }
+  }
+}
+
+.md-small {
+  @media only screen and (max-width: 31.25em) {
+    margin: 0 3rem !important;
+    
+  }
+}
+.md-mid { 
+  @media only screen and (max-width: 47.9375em) {
+    padding: 3rem 4rem 0 4rem !important;    
+  }
+  @media only screen and (max-width: 21.875em) {
+    padding: 3rem 2.5rem 0 2.5rem !important;    
+  }
+
+}
+
+.pb_text {
+  @media only screen and (max-width: 37.5em) {
+    padding-bottom: 0 !important;   
+    font-size: 1.5rem !important; 
+  }
+  // @media only screen and (max-width: 37.5em) {
+  //   padding-bottom: 1rem !important;   
+  //   font-size: 1.5rem !important; 
+  // }
+}

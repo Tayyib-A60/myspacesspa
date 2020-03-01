@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card gradient-blackberry">
+        <div class="card-content">
+          <div class="card-body pt-2 pb-0">
+            <div class="media">
+              <div class="media-body white text-left">
+              <h3 class="font-large-1 mb-0">{{merchantMetrics?.totalRevenue | currency : 'NGN' : 'symbol-narrow'}}</h3>
+                <span>Total Revenue</span>
+              </div>
+              <div class="media-right white text-right">
+                <i class="icon-pie-chart font-large-1"></i>
+              </div>
+            </div>
+          </div>
+          <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            <x-chartist class="" [data]="WidgetlineChart.data" [type]="WidgetlineChart.type" [options]="WidgetlineChart.options" [responsiveOptions]="WidgetlineChart.responsiveOptions"
+             [events]="WidgetlineChart.events">
+            </x-chartist>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card gradient-ibiza-sunset">
+        <div class="card-content">
+          <div class="card-body pt-2 pb-0">
+            <div class="media">
+              <div class="media-body white text-left">
+              <h3 class="font-large-1 mb-0">{{merchantMetrics?.topSpaceRevenueUsage?.topSpaceRevenue | currency : 'NGN' : 'symbol-narrow'}}</h3>
+                <span>Space Id: {{merchantMetrics?.topSpaceRevenueUsage?.spaceId}}</span>
+                <br>
+                <span>Space with top Revenue</span>
+              </div>
+              <div class="media-right white text-right">
+                <i class="icon-pie-chart font-large-1"></i>
+              </div>
+            </div>
+          </div>
+          <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            <x-chartist class="" [data]="WidgetlineChart.data" [type]="WidgetlineChart.type" [options]="WidgetlineChart.options" [responsiveOptions]="WidgetlineChart.responsiveOptions"
+             [events]="WidgetlineChart.events">
+            </x-chartist>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card gradient-green-tea">
+        <div class="card-content">
+          <div class="card-body pt-2 pb-0">
+            <div class="media">
+              <div class="media-body white text-left">
+              <h3 class="font-large-1 mb-0">{{merchantMetrics?.topSpaceHoursUsed?.totalUsageInHours}} Hrs</h3>
+                <span>Space Id: {{merchantMetrics?.topSpaceHoursUsed?.spaceId}}</span>
+                <br>
+                <span>Space with top usage</span>
+              </div>
+              <div class="media-right white text-right">
+                <i class="icon-pie-chart font-large-1"></i>
+              </div>
+            </div>
+          </div>
+          <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            <x-chartist class="" [data]="WidgetlineChart.data" [type]="WidgetlineChart.type" [options]="WidgetlineChart.options" [responsiveOptions]="WidgetlineChart.responsiveOptions"
+             [events]="WidgetlineChart.events">
+            </x-chartist>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card gradient-pomegranate">
+        <div class="card-content">
+          <div class="card-body pt-2 pb-0">
+            <div class="media">
+              <div class="media-body white text-left">
+              <h3 class="font-large-1 mb-0">{{merchantMetrics?.totalSpaceBooking}}</h3>
+                <span>Booking count</span>
+              </div>
+              <div class="media-right white text-right">
+                <i class="icon-pie-chart font-large-1"></i>
+              </div>
+            </div>
+          </div>
+          <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            <x-chartist class="" [data]="WidgetlineChart.data" [type]="WidgetlineChart.type" [options]="WidgetlineChart.options" [responsiveOptions]="WidgetlineChart.responsiveOptions"
+             [events]="WidgetlineChart.events">
+            </x-chartist>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+      <div class="card gradient-pomegranate">
+        <div class="card-content">
+          <div class="card-body pt-2 pb-0">
+            <div class="media">
+              <div class="media-body white text-left">
+              <h3 class="font-large-1 mb-0">{{merchantMetrics?.totalSpaceReservation}}</h3>
+                <span>Reservation count</span>
+              </div>
+              <div class="media-right white text-right">
+                <i class="icon-pie-chart font-large-1"></i>
+              </div>
+            </div>
+          </div>
+          <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+            <x-chartist class="" [data]="WidgetlineChart.data" [type]="WidgetlineChart.type" [options]="WidgetlineChart.options" [responsiveOptions]="WidgetlineChart.responsiveOptions"
+             [events]="WidgetlineChart.events">
+            </x-chartist>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

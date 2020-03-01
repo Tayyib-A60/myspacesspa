@@ -1,0 +1,61 @@
+<div class="header">
+  <div class="header_container">
+    <div class="col6">
+      <div>
+        <a [routerLink]="['']"  class='header-link'>
+          <img class='logo' src='https://res.cloudinary.com/dro0fy3gz/image/upload/v1576489895/Logo/234Spaces_logo_PNG_2_qxc8rn.png'>
+        </a>
+      </div>
+    </div>
+      <!-- <div class="header_logo mr-3">
+        <a [routerLink]="['']"  class='px-5 header-link'><img class='' src='https://res.cloudinary.com/dro0fy3gz/image/upload/v1580739575/Logo/234Spaces_logo_PNG_2_qxc8rn__1_-removebg-preview_usjfwm.png'></a>
+      </div> -->
+      <div class="header_search">
+        <input type="text" class="header_input" placeholder="Search location...">
+    <span class="">
+      <select class="header_select" name="" id="">
+        <option value="All Spaces" selected>
+          <span class="menu-list-item">All Spaces</span>
+        </option>
+        <option value="Space 1">
+          <span class="menu-list-item">Space 1</span>
+        </option>
+        <option value="Space 2">
+          <span class="menu-list-item">Space 2</span>
+        </option>
+      </select>
+    </span>
+      </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-info btn-raised px-3 mx-1 mb-0 header_menu bb  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a *ngIf='merchantIsAuthenticated()' [routerLink]="['/admin']" class="dropdown-item">{{currentUser['roles'] == 'Merchant'? 'Merchant': 'Admin'}}</a>
+            <a *ngIf='!merchantIsAuthenticated()' [routerLink]="['/list-your-space']" class="dropdown-item">List-your-space</a>
+            <a *ngIf='!anyUserIsAuthenticated()' [routerLink]="['/sign-in']" class="dropdown-item">Sign in</a>
+            <a *ngIf='!anyUserIsAuthenticated()' [routerLink]="['/sign-up']" class="dropdown-item">Sign up</a>
+            <a *ngIf='!anyUserIsAuthenticated()' [routerLink]="['/sign-up-as-merchant']" class="dropdown-item">List-your-space</a>
+            <a [routerLink]="['/space-home']" class="dropdown-item">Home</a>
+            <a [routerLink]="['/profile']" class="dropdown-item">Profile</a>
+            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+          </div>
+        </div>
+      <div class="header_btn">
+          <button type="button" *ngIf='!currentUser'  [routerLink]="['/sign-in']" class="btn btn-primary btn-raised px-4 mx-1 mb-0 bb">Login</button>
+          <button type="button" *ngIf='currentUser' (click)='signOut()' class="btn btn-primary btn-raised px-4 mx-1 mb-0 bb">Sign out</button>
+          <button type="button" *ngIf='!currentUser' [routerLink]="['/sign-up']" class="btn btn-primary btn-raised px-4 mx-1 mb-0 bb">Sign up</button>
+          <!-- <button type="button" *ngIf='anyUserIsAuthenticated()' (click)='signOut()' class="btn btn-primary btn-raised px-4 mx-1 mb-0 bb">Sign out</button> -->
+      </div>
+  </div>
+  <!-- <div class="header_search-1">
+    <input type="text" class="header_input" placeholder="Search location...">
+    <span class="">
+      <fieldset class="form-group">
+        <ng-select [items]="spaceTypes" [virtualScroll]="true" bindLabel="type" bindValue="id" placeholder="Select type"
+        [(ngModel)]="selectedType">
+        </ng-select>
+    </fieldset>
+    </span>
+  </div> -->
+</div>

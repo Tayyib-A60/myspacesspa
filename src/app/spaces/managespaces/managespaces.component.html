@@ -1,0 +1,68 @@
+<!--Extended Table starts-->
+<div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">My Spaces</div>
+    </div>
+</div>
+  <!--Shopping cart starts-->
+  <section id="shopping-cart">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Make changes to your spaces here</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <table class="table table-responsive-md text-center">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <!-- <th>Location</th>
+                    <th>Price</th> -->
+                    <th>Size</th>
+                    <th>Actions</th>
+                    <th>Completed</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf='spaces'>
+                  <tr *ngFor='let space of spaces'>
+                    <td>{{space.id}}</td>
+                    <td><img class="media-object round-media" src="assets/img/elements/01.png" alt="Generic placeholder image"style="height: 75px;" /></td>
+                    <td>{{space?.name}}</td>
+                    <!-- <td>{{space?.location.name}}</td> -->
+                    <!-- <td> {{ space?.pricePH.price | currency : 'NGN' : 'symbol-narrow' }}</td> -->
+                    <td>{{space?.size}}</td>
+                    <td>
+                        <a [routerLink]="['../edit-space/' + space.id]" class="success p-0" data-original-title="" title="">
+                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                        </a>
+                        <a style="margin-right: .7rem;" [routerLink]="['../upload-images/' + space.id]" class="success p-0" data-original-title="" title="">
+                          <i class="fa fa-upload"></i>
+                        </a>
+                        <a (click)='deleteSpace(space.id)' class="danger p-0" data-original-title="" title="">
+                          <i class="ft-x font-medium-3 mr-2"></i>
+                        </a>
+                        <a [routerLink]="['../manage-availability/' + space.id]" class="success p-0" data-original-title="" title="">
+                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                        </a>
+                    </td>
+                    <td>
+                      {{!(space?.location == null || space?.pricePD == null || space?.pricePW == null || space?.pricePH == null || space?.photos?.length < 1)}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="spaceQueryResult">
+          <app-pagination *ngIf="spaceQueryResult?.totalItems > merchantQuery?.pageSize"  [totalItems]="spaceQueryResult?.totalItems" [pageSize]="merchantQuery?.pageSize" (pageChanged)="onPageChange($event)"></app-pagination>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Shopping cart ends-->
+  

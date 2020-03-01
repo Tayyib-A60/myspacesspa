@@ -1,0 +1,273 @@
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10 col-lg-8">
+          <h4 class="card-title">Bookings</h4>
+        </div>
+        <div class="col-md-2 col-lg-4">
+        <div class="form-group">
+            <button [routerLink]="['/admin/create-booking-for-client']" class="btn button_success">Add Booking</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <div class="m-auto">
+          <div class="card-content">
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+              <h4 class="modal-title">Booking Details</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+                  <div>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                          <div class="card-content card-bg">
+                            <div class="card-img">
+                              <img class="card-img-top img-fluid card-radius" [src]="space?.photos[0].fileName" alt="assets/img/photos/14.jpg">
+                              <h4 class="card-title home-card-title">{{ space?.name }}</h4>
+                            </div>
+                            <div class="card-body card-body-pad">
+                              <div class="row justify-content-between">
+                                <div class="col-6">
+                                  <h5>{{reservation['usingFrom'] | date: 'MMM, d, h:mm a'}} - {{reservation['usingTill'] | date: 'MMM, d, y h:mm a'}}</h5>
+                                </div>
+                                <div class="col-6">
+                                  <h5>Amenities </h5>
+                                  <div *ngFor='let amenity of amenities'>
+                                  <p>{{amenities}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <h5 class="card-text">Booked by: {{user?.name}}</h5>
+                              <h5 class="home-card-text">{{user?.email}}</h5>
+                              <h5 class="home-card-text">{{user?.contactNo}}</h5>
+                              <h5 class="home-card-text">{{user?.dateRegistered | date}}</h5>
+                              <div class="card-footer card-footer-pad">
+                                  <div class="row">
+                                      <div class="col-6">
+                                        <span>
+                                          <!-- {{user?.email}} -->
+                                        </span>
+                                      </div>
+                                      <div class="col-7">
+                                        <i class="fa fa-map-marker"></i>
+                                        <span>&nbsp;{{space?.locationAddress}}</span>
+                                      </div>
+                                    </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <ngb-tabset [orientation]="currentOrientation">
+            <ngb-tab title="Upcoming Bookings">
+                <ng-template ngbTabContent>
+                      <section id="shopping-cart">
+                        <div class="row text-left">
+                          <div class="col-sm-12">
+                            <div class="card">
+                              <div class="card-content">
+                                <div class="col-md-12 col-12">
+                                  <div class="row">
+                                    <!-- <div class="col-md-4 col-12"> -->
+                                      <form class="form-inline">
+                                        <div class="form-group">
+                                        <div class="col-md-6 col-12">
+                                          <div class="input-group">
+                                            <input class="form-control" placeholder="Start" name="dp" [(ngModel)]="dateStart" ngbDatepicker
+                                              #d1="ngbDatepicker">
+                                            <div class="input-group-append">
+                                              <div class="input-group-text" (click)="d1.toggle()">
+                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                          <div class="input-group">
+                                            <input class="form-control" placeholder="End" name="dp" [(ngModel)]="dateEnd" ngbDatepicker
+                                              #d2="ngbDatepicker">
+                                            <div class="input-group-append">
+                                              <div class="input-group-text" (click)="d2.toggle()">
+                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </div>
+                                      </form>
+                                      <!-- </div> -->
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-9 col-12">
+                                          <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                                              </div>
+                                              <input placeholder="e.g. space, location e.t.c." type="text" class="form-control round" name="form-control-with-icon" [(ngModel)]='searchString'>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-3 col-12">
+                                        <div class="form-group">
+                                          <button (click)='search()' class="btn button_success">Search</button>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="card-body">
+                                  <table class="table table-responsive-md text-center">
+                                    <thead>
+                                      <tr>
+                                        <th>Booking REF</th>
+                                        <th>Time</th>
+                                        <th>Price</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr (click)='open(content, reservation)' class="booking_details" *ngFor='let reservation of upcomingBookings'>
+                                        <td>
+                                          {{reservation?.bookingRef}}
+                                        </td>
+                                        <td>
+                                        <div class="row text-left" matchHeight="card">
+                                              <h5>{{reservation['usingFrom'] | date: 'MMM, d, h:mm a'}} - {{reservation['usingTill'] | date: 'MMM, d, y h:mm a'}}</h5>
+                                        </div>
+                                        </td>
+                                        <td>
+                                            <h4 class="card-title">{{reservation['totalPrice'] | currency: 'NGN' : 'symbol-narrow'}}</h4>
+                                        </td>
+                                        <hr>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Previous Bookings">
+                <ng-template ngbTabContent>
+                      <section id="shopping-cart">
+                        <div class="row text-left">
+                          <div class="col-sm-12">
+                            <div class="card">
+                              <div class="card-content">
+                                <div class="col-md-12 col-12">
+                                  <div class="row">
+                                    <!-- <div class="col-md-4 col-12"> -->
+                                      <form class="form-inline">
+                                        <div class="form-group">
+                                        <div class="col-md-6 col-12">
+                                          <div class="input-group">
+                                            <input class="form-control" placeholder="Start" name="dp" [(ngModel)]="dateStart" ngbDatepicker
+                                              #d1="ngbDatepicker">
+                                            <div class="input-group-append">
+                                              <div class="input-group-text" (click)="d1.toggle()">
+                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                          <div class="input-group">
+                                            <input class="form-control" placeholder="End" name="dp" [(ngModel)]="dateEnd" ngbDatepicker
+                                              #d2="ngbDatepicker">
+                                            <div class="input-group-append">
+                                              <div class="input-group-text" (click)="d2.toggle()">
+                                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </div>
+                                      </form>
+                                      <!-- </div> -->
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-9 col-12">
+                                          <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                                              </div>
+                                              <input placeholder="e.g. space, location e.t.c." type="text" class="form-control round" name="form-control-with-icon" [(ngModel)]='searchString'>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-3 col-12">
+                                        <div class="form-group">
+                                          <button (click)='search()' class="btn button_success">Search</button>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="card-body">
+                                  <table class="table table-responsive-md text-center">
+                                    <thead>
+                                      <tr>
+                                        <th>Booking REF</th>
+                                        <th>Time</th>
+                                        <th>Price</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr (click)='open(content, reservation)' class="booking_details" *ngFor='let reservation of previousBookings'>
+                                        <td>
+                                          {{reservation?.bookingRef}}
+                                        </td>
+                                        <td>
+                                        <div class="row text-left" matchHeight="card">
+                                              <h5>{{reservation['usingFrom'] | date: 'MMM, d, h:mm a'}} - {{reservation['usingTill'] | date: 'MMM, d, y h:mm a'}}</h5>
+                                        </div>
+                                        </td>
+                                        <td>
+                                            <h4 class="card-title">{{reservation['totalPrice'] | currency: 'NGN' : 'symbol-narrow'}}</h4>
+                                        </td>
+                                        <hr>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+</div>
+<div *ngIf="bookingQueryResult">
+    <app-admin-pagination *ngIf="bookingQueryResult?.totalItems > merchantBookingQuery?.pageSize"  [totalItems]="bookingQueryResult?.totalItems" [pageSize]="merchantBookingQuery?.pageSize" (pageChanged)="onPageChange($event)"></app-admin-pagination>
+</div>
+
+
+ <!-- <fieldset class="form-group">
+    <ng-select [items]="capacities" [virtualScroll]="true" bindLabel="label" bindValue="capacity" placeholder="Select size"
+    [(ngModel)]="selectedCapacity">
+    </ng-select>
+</fieldset> -->
+
+<!-- <div class="form-group">
+                                          <div class="position-relative has-icon-right">
+                                            <input placeholder="e.g. space, location e.t.c." type="text" class="form-control round" name="form-control-with-icon">
+                                          </div>
+                                        </div> -->

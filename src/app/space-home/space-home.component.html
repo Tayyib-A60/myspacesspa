@@ -1,0 +1,129 @@
+<!-- <app-navbar (toggleHideSidebar)="toggleHideSidebar($event)"></app-navbar> -->
+<div class="nav_container">
+  <app-navigation></app-navigation>
+  <!-- <div class="d-flex justify-content-between align-items-center px-5 pt-3">
+    <div class="nav_logo">
+      <h3>234Spaces</h3>
+    </div>
+    <div style="vertical-align: baseline;" class="d-flex align-items-center">
+        <div class="dropdown btn-group mr-1 " ngbDropdown>
+            <button  type="button" class="btn btn-inf btn-raied h4 mb-0 dropdown-toggle" ngbDropdownToggle>
+                Menu
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu" role="menu">
+              <a class="dropdown-item">Action</a>
+              <a class="dropdown-item">Another action</a>
+              <a class="dropdown-item">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item">Separated link</a>
+            </div>
+          </div>
+        <div>
+            <a type="button" [routerLink]="['/']"  class="btn btn-raised px-4 mb-0  nav_btn">Login</a>
+            <a type="button" [routerLink]="['/']" class="btn btn-raised px-4 mb-0  nav_btn">Sign up</a>
+        </div>
+    </div>
+  </div> -->
+  <!-- Home-text start -->
+  <div class="space_head px-5">
+      <p class="space_text">Explore over 4,000 short-term</p>
+      <p class="space_text">and shared work spaces.</p>
+  </div>
+<div class="space_input mx-5">
+      <span class="space_highlight">
+          <i class="fa fa-search fa-1x space_icon-1"></i>
+          <input type="text" [(ngModel)]='searchString' class="space_input-2" placeholder="Search by location">
+      </span>
+      <span class="space_highlight">
+        <!-- <fieldset class="form-group">
+          <ng-select [items]="spaceTypes" [virtualScroll]="true" bindLabel="type" bindValue="id" placeholder="Select type"
+          [(ngModel)]="selectedType">
+          </ng-select>
+      </fieldset> -->
+        <select name="" id="" [(ngModel)]="selectedType">
+          <option value="All Spaces" selected>
+            <span class="menu-list-item">All Spaces</span>
+          </option>
+          <option *ngFor='let type of spaceTypes' [ngValue]="type" >
+            <span class="menu-list-item">{{type?.type}}</span>
+          </option>
+        </select>
+      </span>
+      <span>
+          <button type="button" (click)='search()' class="btn btn-raised mb-0  nav_btn">SEARCH</button>
+      </span>
+</div>
+  <div >
+      <img class='space_img' src="assets/img/photos/space2.jpg"  alt="Random first slide">
+  </div>
+<div class="space_head px-2 pb-2">
+    <p class="text-center space_text">Browse or book workspaces around Nigeria.</p>
+    <app-sample-carousel></app-sample-carousel>
+</div>
+<div class="jumbotron list_space p-0">
+  <div class="row">
+      <div class="col-md-6 col-sm-12">
+          <img class='list_space_img' src="assets/img/photos/01.jpg" alt="Random first slide">
+        </div>
+        <div class="col-md-6 col-sm-12 md-mid pt-5">
+          <h1 class="text-bold-600 list_space_sm_text">List your space for free</h1>
+          <div class="custom-control custom-checkbox pt-2">
+              <input type="checkbox" class="custom-control-input lead" checked>
+              <label class="custom-control-label text-bold-400" for="defaultUnchecked">&nbsp;List your space in 5 easy steps</label>
+          </div>
+          <div class="custom-control custom-checkbox pt-2">
+              <input type="checkbox" class="custom-control-input lead" checked>
+              <label class="custom-control-label text-bold-400" for="defaultUnchecked">&nbsp;Customise and control your listing</label>
+          </div>
+          <div class="custom-control custom-checkbox pt-2">
+              <input type="checkbox" class="custom-control-input lead" checked>
+              <label class="custom-control-label text-bold-400" for="defaultUnchecked">&nbsp;Attract great people</label>
+          </div>
+          <div class="d-flex justify-content-end pt-sm-1">
+              <button type="button" class="btn btn-raised mb-0 pr-3 nav_btn list_space_btn">Get Started</button>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="space_head px-5 pb-4 pb_text">
+    <p class="space_text">234Spaces gives you peace of mind.</p>
+</div>
+<div class="row mx-5 md-small pb-2">
+  <div class="col-lg-3 col-md-3 col-sm-12 space_manager">
+    <div class="pb-2 pt-3">
+        <i  class="fa fa-home fa-3x space_manager_icon pb-3"></i>
+        <p class="space_manager_text">Trusty and verified</p>
+        <p class="space_manager_text">space managers.</p>
+    </div>
+    <p>Verified space managers have got your back. Prepped and ready to support you with any questions about the unknown.</p>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-12 space_manager">
+    <div class="pb-2 pt-3">
+        <i  class="fa fa-credit-card fa-3x space_manager_icon pb-3"></i>
+        <p class="space_manager_text">Book and pay</p>
+        <p class="space_manager_text">conveniently online.</p>
+    </div>
+    <p>Our listings have all the relevant info you need so you can go from browsing to booking in next to no time.</p>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-12 space_manager">
+    <div class="pb-2 pt-3">
+        <i  class="fa fa-credit-card fa-3x space_manager_icon pb-3"></i>
+        <p class="space_manager_text">Secure payments</p>
+        <p class="space_manager_text">through Stripe.</p>
+    </div>
+    <p>Our payment partner, Stripe, uses gold standard security tools to make sure your personal information is out of harm’s way.</p>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-12 space_manager">
+    <div class="pb-2 pt-3">
+        <i  class="fa fa-home fa-3x space_manager_icon pb-3"></i>
+        <p class="space_manager_text">We’re friends of</p>
+        <p class="space_manager_text">space managers.</p>
+    </div>
+    <p>Verified space managers have got your back. Prepped and ready to support you with any questions about the unknown.</p>
+  </div>
+  
+  
+  
+</div>
+</div>
+<app-footer></app-footer>

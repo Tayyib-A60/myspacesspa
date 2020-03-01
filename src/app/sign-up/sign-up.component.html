@@ -1,0 +1,74 @@
+<div class="row text-left justify-content-center">
+  <div class="col-7 signUp">
+    <div class="d-flex justify-content-between signUp-nav">
+      <a class='signUp_text' [routerLink]="['/']" routerLinkActive="router-link-active" >234Spaces<span  class="signUp_dash">|</span></a>
+      <a [routerLink]="['/sign-in']">Sign In <span class="signUp_dash"> | </span></a>
+      <a [routerLink]="['/sign-up']">Sign Up</a>
+    </div>
+  </div>
+  <div class="col-5 signUp_col">
+    <div class="container">
+      <h2 class="text-bold-700 mb-3">We are 234Spaces</h2>
+      <div class="lead mb-3 signUp_sub-head">
+        <p class="lead">Sign up and start exploring</p>
+        <p class="lead">space meant for you</p>
+      </div>
+      <!-- <div class="signUp_form">
+        <fieldset class="form-group">
+            <div class="form-data">
+              <label class="form-data-label" for="disabledInput">Name</label>
+              <input type="email" class="form-control form-data-input" id="placeholderInput" placeholder="janedoe">
+            </div>
+            <div class="form-data signUp_data">
+              <label class="form-data-label" for="disabledInput">Email</label>
+              <input type="email" class="form-control form-data-input" id="placeholderInput" placeholder="janedoe@gmail.com">
+            </div>
+            <div class="form-data">
+              <label class="form-data-label" for="disabledInput">Password</label>
+              <input type="email" class="form-control form-data-input" id="placeholderInput" placeholder="Enter password here...">
+            </div>
+            <div class="form-data">
+              <label class="form-data-label" for="disabledInput">Confirm password</label>
+              <input type="email" class="form-control form-data-input" id="placeholderInput" placeholder="Re-enter password here...">
+            </div>
+        </fieldset>
+      </div>
+      <div class="d-flex align-items-baseline justify-content-between">
+        <p>Already have an account? <a href="" class="text-bold-500">Sign In</a></p>
+        <button type="button" class="btn btn-raised px-4 mb-0  explore_spaces-icon">
+          <span class="d-lg-inline-block d-none signUp-btn">SIGN UP</span>
+        </button> -->
+      <div class="signUp_form">
+        <form novalidate (ngSubmit)='signUp()' [formGroup]="signUpForm" class="form">
+          <div class="form-body">
+            <fieldset class="form-group">
+                <!-- <label for="disabledInput">Input with Placeholder</label> -->
+                <div class="form-data">
+                  <label class="form-data-label" for="disabledInput">Name</label>
+                  <input type="text" formControlName="name" class="form-control form-data-input" id="placeholderInput" placeholder="Your name...">
+                </div>
+                <div class="form-data signUp_data">
+                  <label class="form-data-label" for="disabledInput">Email</label>
+                  <input type="email" formControlName="email" class="form-control form-data-input" id="placeholderInput" placeholder="Your email...">
+                </div>
+                <div class="form-data">
+                  <label class="form-data-label" for="disabledInput">Password</label>
+                  <input type="password" autocomplete="new-password" formControlName="password" class="form-control form-data-input" id="placeholderInput" placeholder="Enter password here...">
+                </div>
+                <!-- <div class="form-data">
+                  <label class="form-data-label" for="disabledInput">Confirm password</label>
+                  <input type="password" formControlName="password" class="form-control form-data-input" id="placeholderInput" placeholder="Re-enter password here...">
+                </div> -->
+            </fieldset>
+          </div>
+          <div class="d-flex align-items-baseline justify-content-between">
+            <p>Already have an account? <a [routerLink]="['/sign-in']" class="text-bold-500">Sign In</a ></p>
+            <button type="submit" [disabled]='!signUpForm.valid || !signUpForm.dirty' class="btn btn-raised px-4 mb-0  explore_spaces-icon">
+              <span class="d-lg-inline-block signUp-btn">SIGN UP</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.logo{
+  height: auto;
+  width: 200px;
+}
+
+.nav {
+
+    // &_container {
+  
+    // }
+    &_logo {
+      font-size: 2rem;
+      font-weight: 300;
+    }
+  
+    &_btn {
+        
+        // border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+        
+        padding: .5rem .5rem;
+        border-radius: 2rem;
+        margin-left: .3rem;
+
+        &_two {
+          // display: inline-block;
+          padding: 0;
+          margin-left: 1rem;
+        }
+    }
+  
+  }

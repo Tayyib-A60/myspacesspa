@@ -1,0 +1,25 @@
+img.img-thumbnail {
+    height: 100px;
+    min-width: 100px !important;
+    margin-bottom: 2px;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+input[type=file] {
+    color: transparent;
+}
+.button_success {
+    background-color: #0CC27E;
+    color: #fff;
+}
+.button_orange {
+    background-color: #FF8D60;
+    color: #fff;
+}
+.button_red {
+    background-color: #dc3545;
+    color: #fff;
+}

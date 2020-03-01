@@ -1,0 +1,147 @@
+<div class="row text-left">
+  <div class="col-md-8">
+  <div class="card">
+    <div class="card-header">
+      <fieldset class="form-group">
+        <ng-select (ngModelChange)='setSelected($event)' [items]="spaces" [virtualScroll]="true" bindLabel="name" bindValue="id" placeholder="Select space"
+        [(ngModel)]="spaceId">
+        </ng-select>
+      </fieldset>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="row text-left">
+  <div class="col-md-8">
+<div class="card">
+  <div class="card-header">
+    <h2>
+      {{spaceSelected?.name}}
+    </h2>
+  </div>
+  <br>
+  <div class="card-content">
+    <div class="px-3">
+      <div *ngIf='spaceSelected' class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12">
+              <fieldset class="form-group">
+                <h4 *ngIf='spaceSelected.locationAddress.length > 1'><i class="fa fa-map-marker"></i> {{spaceSelected.locationAddress}} </h4>
+            </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <fieldset class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="Start date" name="dp" [(ngModel)]="dateStart" ngbDatepicker
+                  #d1="ngbDatepicker">
+                <div class="input-group-append">
+                  <div class="input-group-text" (click)="d1.toggle()">
+                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                  </div>
+                </div>
+              </div>
+          </fieldset>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <fieldset class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="End date" name="dp" [(ngModel)]="dateEnd" ngbDatepicker
+                #d2="ngbDatepicker">
+              <div class="input-group-append">
+                <div class="input-group-text" (click)="d2.toggle()">
+                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                </div>
+              </div>
+            </div>
+        </fieldset>
+        </div>
+        </div>
+        <div *ngIf='spaceSelected?.selectedPricingOption == 0' class="row">
+            <div class="col-6">
+              <p>Start Time</p>
+            </div>
+            <div class="col-6">
+              <p>End Time</p>
+            </div>  
+        </div>
+        <div *ngIf='spaceSelected?.selectedPricingOption == 0' class="d-flex justify-content-between">
+          <div class="row">
+              <div class="col-6">
+                  <ngb-timepicker [(ngModel)]="timeStart" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+              </div>
+              <div class="col-6">
+                  <ngb-timepicker [(ngModel)]="timeEnd" [minuteStep]="minuteStep" [meridian]='meridian'></ngb-timepicker>
+              </div>
+              <div *ngIf='spaceSelected.amenities' class="col-12">
+                <div class="mt-4">
+                  <div class="d-flex">
+                      <div *ngFor='let amenity of spaceSelected.amenities' class="custom-control custom-checkbox pr-4 space_content">
+                          <input (change)='amenityChecked($event)' [value]='amenity["id"]' type="checkbox" class="custom-control-input" [id]="amenity['id']">
+                          <label class="custom-control-label" [for]="amenity['id']">&nbsp; {{amenity?.name}} ({{amenity.price == 0 ? 'Free' : amenity?.price | currency : 'NGN' : 'symbol-narrow'}})</label>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <hr><br><br>
+              <br>
+              <br>
+              <br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <div class="custom-control custom-checkbox pr-4 space_content">
+                    <input [(ngModel)]='isBooking' type="checkbox" class="custom-control-input" id="isBooking">
+                    <label class="custom-control-label" for="isBooking">Create as Booking</label>
+                </div>
+              </div>
+          </div>
+          </div>
+          <br><br><br>
+          <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+              <fieldset class="form-group">
+                  <label for="name">Client Name</label>
+                  <input [(ngModel)]='name' type="text" class="form-control" name="name" id="name">
+              </fieldset>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+              <fieldset class="form-group">
+                  <label for="email">Client Email</label>
+                  <input [(ngModel)]='email' type="email" class="form-control" name="email" id="email">
+              </fieldset>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+              <fieldset class="form-group">
+                  <label for="phone">Client Phone Number</label>
+                  <input [(ngModel)]='phone' type="text" class="form-control" name="phone" id="phone">
+              </fieldset>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <div class="custom-control custom-checkbox pr-4 space_content">
+                    <input value='' (click)='checkAvailability($event)' type="checkbox" class="custom-control-input" id="checkAvailability">
+                    <label class="custom-control-label" for="checkAvailability">Check availablity</label>
+                </div>
+              </div>
+          </div>
+          </div>
+        </div>
+        <br><br>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <button [disabled]='!dateStart || !dateEnd' (click)='bookSpace()' type="button" class="btn btn-raised mr-1 btn-round btn-primary btn-large">Book</button>
+        </div>
+        <!-- <div class="col-xl-6 col-lg-6 col-md-6">
+          <button [disabled]='!dateStart || !dateEnd' (click)='reserveSpace()' type="button" class="btn btn-raised mr-1 btn-round btn-primary btn-large">Reserve</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

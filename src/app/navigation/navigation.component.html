@@ -1,0 +1,33 @@
+<div class="nav_container">
+    <div class="d-flex justify-content-between align-items-center px-md-5 px-sm-3 pt-3">
+      <div class="col6">
+        <div>
+          <a [routerLink]="['']"  class='header-link'>
+            <img class='logo' src='https://res.cloudinary.com/dro0fy3gz/image/upload/v1576489895/Logo/234Spaces_logo_PNG_2_qxc8rn.png'>
+          </a>
+        </div>
+      </div>
+      <div class="co-6">
+        <div class="d-flex align-items-center">
+          <div class="dropdown btn-group mr-1 " ngbDropdown>
+              <button  type="button" class="btn btn-inf btn-raied h4 mb-0 dropdown-toggle" ngbDropdownToggle>
+                  <span style="font-size: 1.5rem; font-weight: bold;">Menu</span>
+              </button>
+              <div ngbDropdownMenu class="dropdown-menu" role="menu">
+                <a [routerLink]="['/map-space']" class="nav-link position-relative"><span class="nav-name">Discover Spaces</span></a>
+                <a *ngIf='merchantIsAuthenticated()' [routerLink]="['/admin']" class="nav-link position-relative"><span class="nav-name">Merchant Dashboard</span></a>
+                <a *ngIf='anyUserIsAuthenticated()' [routerLink]="['/profile']" class="nav-link position-relative"><span class="nav-name">Dashboard</span></a>
+                <a *ngIf='!merchantIsAuthenticated()' [routerLink]="['/sign-up-as-merchant']" class="nav-link position-relative"><span class="nav-name">List-your-space</span></a>
+                <div class="dropdown-divider"></div>
+                <!-- <a [routerLink]="['/admin']" class="nav-link position-relative"><span class="nav-name">{{currentUser['roles'] == 'Merchant'? 'Merchant': 'Admin'}}</span></a> -->
+              </div>
+            </div>
+          <div class="d-flex align-items-center">
+              <button type="button" *ngIf='!anyUserIsAuthenticated()' [routerLink]="['/sign-in']" class="btn btn-raised px-4 mb-0  nav_btn">Login</button>
+              <button type="button" *ngIf='!anyUserIsAuthenticated()' [routerLink]="['/sign-up']" class="btn btn-raised px-4 mb-0  nav_btn">Sign up</button>
+              <button type="button" *ngIf='anyUserIsAuthenticated()' (click)='signOut()' class="btn btn-raised px-4 mb-0  nav_btn">Sign out</button>
+          </div>
+      </div>
+      </div>
+    </div>
+</div>

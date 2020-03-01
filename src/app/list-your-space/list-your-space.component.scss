@@ -1,0 +1,157 @@
+.caption_container {
+    background-image: url(../../assets/img/photos/space2.jpg);
+    background-position: cover;
+    height: 300px;
+    padding: 5rem;
+    
+}
+
+.main_caption {
+    font-size: 4rem;
+    font-weight: 500;
+    // padding-top: 8rem;
+    color: #fff;
+    text-align: center;
+  
+    @media only screen and (max-width: 1000px) {
+        font-size: 3rem;
+        // font-weight: 400;
+        // padding-top: 3rem;
+    }
+    @media only screen and (max-width: 600px) {
+        font-size: 2rem;
+        // font-weight: 400;
+        // padding-top: 3rem;
+    }
+    @media only screen and (max-width: 500px) {
+        font-size: 1.8rem;
+        // font-weight: 400;
+        // padding-top: 3rem;
+    }
+}
+.sub_caption {
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: #fff;
+    text-align: center;
+    letter-spacing: normal;
+    line-height: normal;
+    @media only screen and (max-width: 900px) {
+        font-size: 1.3rem;
+    }
+    @media only screen and (max-width: 600px) {
+        font-size: 1rem;
+        font-weight: 100;
+    }
+}
+.spaces {
+    background-color: rgba(#aaa, 0.1);
+    padding-top: 3rem;
+    padding: 3rem;
+    // padding: 1.5rem;
+    text-align: center;
+
+    @media only screen and (max-width: 400px) {
+        padding: 1.8rem;
+    }
+
+    &_bg-special {
+        background-color: #fff;
+    }
+
+    &_head{
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+    }
+    // &_sub_head {
+    //     line-height: .5;
+    // }
+    &_dash {
+        font-size: 5rem;
+    }
+    &_content {
+        position: relative;
+        text-align: center;
+        border-radius: 5px;
+        width: 100%;
+        height: auto;
+        background-color: rgba(#aaa, 0.1);
+        
+    }
+    &_img {
+        // border-radius: 3px;
+        width: 100%;
+        // width: 320px;
+        // height: 250px;
+    }
+    &_text {
+        
+        font-size: 1.5rem;
+        font-weight: 500;
+        display: block;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+    &_md-small {
+        @media only screen and (max-width: 400px) {
+            margin: 8px 0 !important;
+        }
+    }
+    &_width_special {
+        max-width: 800px;
+    }
+
+    &_form {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+                  
+        &-bg {
+            border: 1px solid #000;
+            background-color: #000;
+            color: #fff;
+            padding: .8rem 2rem;
+            border-radius: 25px;
+            @media only screen and (max-width: 400px) {
+                border-radius: 20px;
+                padding: .4rem 1rem !important;
+                // padding: ;
+            }
+              
+        }
+        &-text {
+            @media only screen and (max-width: 400px) {
+                font-size: .7rem;
+            }
+
+        }
+
+        &-align {
+            text-align: left !important;
+        }
+        &-margin {
+            margin-bottom: 2rem;
+        }  
+    }
+
+    &_card {
+
+        &-border {
+            border: 1px solid #aaa;
+        }
+
+        &-pad {
+            padding-top: 2.5rem;
+
+            @media only screen and (max-width: 400px) {
+                padding: 2.5rem 1rem 1rem 1rem !important;
+            }
+        }
+    }
+    
+    
+}

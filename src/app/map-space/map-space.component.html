@@ -1,0 +1,77 @@
+<app-new-nav></app-new-nav>
+<div class="map_container">
+    <div class="row">
+      <div class="col-lg-6 col-12">
+            <div class="option_input">
+                <div class="d-flex justify-content-between">
+                  <div>
+                      <p>Show me Spaces in</p>
+                      <input type="text" placeholder='e.g. Lagos' [(ngModel)]="searchString" class="lineup_custom_input">
+                  </div>
+                  <button type="button" class="btn btn-raised px-2 mb-0">
+                      <span class="d-lg-inline-block space_btn" (click)='search()'>Search</span>
+                    </button>
+                </div>
+            </div> 
+            <div class="mt-3 space_container">
+                <div class="d-flex mt-4 justify-content-between align-items-baseline">
+                  <p class="space_sub_head">Filter by:</p>
+                  <fieldset class="form-group">
+                      <ng-select [items]="spaceTypes" [virtualScroll]="true" bindLabel="type" bindValue="id" placeholder="Select type"
+                      [(ngModel)]="selectedType">
+                      </ng-select>
+                  </fieldset>
+                  <fieldset class="form-group">
+                      <ng-select [items]="capacities" [virtualScroll]="true" bindLabel="label" bindValue="capacity" placeholder="Select size"
+                      [(ngModel)]="selectedCapacity">
+                      </ng-select>
+                  </fieldset>
+                  <fieldset class="form-group">
+                      <ng-select [items]="priceFilter" [virtualScroll]="true" bindLabel="label" bindValue="value" placeholder="Select price"
+                      [(ngModel)]="selectedPrice">
+                      </ng-select>
+                  </fieldset>                  
+                </div>
+                <div class="row text-left mt-3" matchHeight="card">
+                    <div *ngFor='let space of spaceQueryResult.items' class="col-lg-6 col-md-6 col-sm-12 col-xs-8">
+                      <!-- <a > -->
+                        <div *ngIf='space?.photos' class="card" style="cursor: pointer;" [routerLink]="['/space/' + space.id]">
+                          <div class="card-content card-bg hct">
+                            <div class="card-img">
+                              <img *ngIf='space.photos.length>0' class="card-img-top img_fit img-fluid card-radius" [src]="space.photos[0].fileName" [alt]="space.photos[0].fileName">
+                              <h4 class="card-title home-card-title">{{space?.price | currency : 'NGN' : 'symbol-narrow'}}</h4>
+                              <!-- <h4 *ngIf='space.selectedPricingOption.option === "Per Day"' class="card-title home-card-title">{{space?.pricePD?.price | currency : 'NGN' : 'symbol-narrow'}} per day</h4> -->
+                            </div>
+                            <div class="card-body card-body-pad">
+                              <div class="row justify-content-between">
+                                <div class="col-6">
+                                    <h3 class="home-card-text">{{space.name}}</h3>
+                                </div>
+                              </div>
+                              <p class="card-text">{{space?.description.length > 23? (space?.description | slice:0:23) + '...' : space?.description}}</p>
+                              <div class="card-footer card-footer-pad">
+                                  <p class="space_text"><i class="fa fa-map-marker"></i> {{space?.locationAddress.length > 37? (space?.locationAddress | slice:0:32) + '...' : space?.locationAddress}}</p>
+                                  <br>
+                                  <p class="space_text">{{space?.size}} people</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- </a> -->
+                    </div>
+                </div>
+                <div *ngIf='spaceQueryResult' class="d-flex justify-content-between mt-5 mb-4">
+                  <app-space-pagination *ngIf="spaceQueryResult?.totalItems > query?.pageSize" [totalItems]="spaceQueryResult?.totalItems" [pageSize]="query?.pageSize" (pageChanged)="onPageChange($event)"></app-space-pagination>
+                </div>
+            </div>
+      </div>
+      <div class="col-lg-6 col-md-11 m-md-auto col-sm-12 col-12">
+          <agm-map [latitude]='latitude' [longitude]='longitude'>
+            <div *ngFor='let space of spaceQueryResult.items'>
+              <agm-marker [latitude]='space?.lat' [longitude]='space?.long'></agm-marker>
+            </div>
+          </agm-map>
+      </div>
+    </div>
+</div>
+<app-footer></app-footer>

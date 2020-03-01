@@ -1,0 +1,62 @@
+<!-- <ngu-carousel #myCarousel [inputs]="carouselTileConfig"
+[dataSource]="carouselItems" style="margin-top: 4rem !important; box-shadow: 4px red !important;">
+  
+  
+    <ngu-tile style="background-color: transparent !important; box-shadow: 4px red !important;" *nguCarouselDef="let item; let i = index; let ani = animate">
+          <a [routerLink]="['/map-space/' + item.url]">
+          <div class="tile" [style.background]="'url('+item.imgUrl+')'" style="border-radius: .3rem;">
+              <h1>{{i + 1}}</h1>
+          </div>
+          <h1 class="cardTitle">{{item.type}}</h1>
+          <p class="cardContent">{{item.content}}</p>
+          </a>
+    </ngu-tile>
+
+  <button NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.5:1">&lt;</button>
+  <button NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.5:1">&gt;</button>
+</ngu-carousel> -->
+
+<!-- <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br> -->
+
+<!-- <ngu-carousel #myCarouseli [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+    <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate" [@slider]="ani">
+      <div class="tile" [style.background]="'url('+item+')'">
+        <h1>{{i + 1}}</h1>
+      </div>
+    </ngu-tile>
+  
+    <button NguCarouselPrev class="leftRs" [style.opacity]="myCarouseli.isFirst ? 0.5:1">&lt;</button>
+    <button NguCarouselNext class="rightRs" [style.opacity]="myCarouseli.isLast ? 0.5:1">&gt;</button>
+  
+    <ul class="myPoint" NguCarouselPoint>
+      <li *ngFor="let i of myCarouseli.pointNumbers; let i = index" [class.active]="i==myCarouseli.activePoint" (click)="myCarouseli.moveTo(i)"></li>
+    </ul>
+  </ngu-carousel> -->
+  <!-- <div class="row"> -->
+    <!-- <div  class="col-md-8 col-xs-12 col-lg-10 col-xl-12"> *ngIf='(spaceTypes?.length > 0)' -->
+      <p-carousel *ngIf='spaceTypes.length > 1 || this.loaded'  [value]="spaceTypes"  styleClass="custom-carousel" [numVisible]="4" [numScroll]="1" [circular]="true" [autoplayInterval]="300000" [responsiveOptions]="responsiveOptions">
+          <ng-template let-item pTemplate="item">
+              <a [routerLink]="['/map-space/' + item.id]">
+              <div style="padding: .4rem;" class="cardh">
+                  <div class="card-content">
+                    <img class="card-img-top img-fluid" [src]="item?.imageUrl" alt="Card image cap">
+                    <div  class="card-body p-0">
+                      <h4 class="card-title">{{item?.type}}</h4>
+                      <p class="card-text p-0">{{item?.description}}</p>
+                    </div>
+                  </div>
+                </div>
+                </a>
+          </ng-template>
+      </p-carousel>
+    <!-- </div>
+  </div> -->

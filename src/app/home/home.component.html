@@ -1,0 +1,183 @@
+            <app-new-nav></app-new-nav>
+            <div class="">
+              <ngb-carousel>
+                <ng-template ngbSlide>
+                  <img class='img_banner' src="assets/img/photos/space3.jpg" alt="Random first slide">
+                  <div class="carousel-caption caption_container">
+                    <h3 class="homepage_captions">Find, Book & Experience on-demand Spaces in Nigeria</h3>
+                    <p>234 Spaces help you find your next space, just tell us..</p>
+                  </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                  <img class='img_banner' src="assets/img/photos/space2.jpg" alt="Random second slide">
+                  <div class="carousel-caption caption_container">
+                    <h3 class="homepage_captions">Find, Book & Experience on-demand Spaces in Nigeria</h3>
+                    <p>234 Spaces help you find your next space, just tell us..</p>
+                  </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                  <img class='img_banner' src="assets/img/photos/space4.jpg" alt="Random third slide">
+                  <div class="carousel-caption caption_container">
+                    <h3 class="homepage_captions">Find, Book & Experience on-demand Spaces in Nigeria</h3>
+                    <p>234 Spaces help you find your next space, just tell us..</p>
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+              <div class="home-card-margin">
+                <div class="row text-left d-flex align-items-center justify-content-center">
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="card-body">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th class="remove_table_border_top">What</th>
+                                  <th class="remove_table_border_top">Where</th>
+                                  <th class="remove_table_border_top">When</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td class="remove_table_border_top">
+                                    <input type="text" placeholder='e.g "Office or event space"' class="lineup_custom_input">
+                                  </td>
+                                  <td class="remove_table_border_top">
+                                    <input type="text" placeholder='e.g "Lagos"' class="lineup_custom_input">
+                                  </td>
+                                  <td class="remove_table_border_top">
+                                      <!-- <ng-select class="lineup_custom_input" [items]="cities" bindLabel="name" placeholder='e.g "Today"' [(ngModel)]="selectedCity">
+                                      </ng-select> -->
+                                      <select class="lineup_custom_input">
+                                        <option>
+                                        </option>
+                                        <option>
+                                          hi
+                                        </option>
+                                        <option>
+                                          sup
+                                        </option>
+                                      </select>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row full-height m-0">
+                <div class="col-12 d-flex align-items-center justify-content-center explore_spaces">
+                  <button type="button" class="btn btn-raised px-4 mb-0  explore_spaces-icon">
+                    <i class="ft ft-search d-lg-none d-lg-inline-block"></i>
+                    <span class="d-lg-inline-block d-none ml-1">EXPLORE SPACES</span>
+                  </button>
+                </div>
+              </div>
+              <div class="row no-gutters justify-content-center HowItWorks" matchHeight="card">
+                  <div class="col-sm-12">
+                      <p class="text-bold-100 home_dash">-</p>
+                      <h1 class="HowItWorks_head">How it works.</h1>
+                      <div class="home_sub-head">
+                        <p>Lorem ipsum is placeholder text commonly</p>
+                        <p>used in the graphic, print, and publishing industries</p>
+                        <p>for previewing layouts and visual mockups.</p>
+                      </div>
+                    </div>
+                  <div class="card-container">
+                    <div class="container-fluid">
+                      <div class="row text-center" matchHeight="card">
+                        <div class="d-flex flex-row">
+                          <div class="card-body HowItWorks-body">
+                            <div class="HowItWorks-head">
+                              <span class="HowItWorks-format">1</span>
+                            </div>
+                            <h3 class="text-center text-bold-500">Seach</h3>
+                            <p class="content-sub-header">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                          </div>
+                          <div class="card-body HowItWorks-body">
+                            <div class="HowItWorks-head">
+                              <span class="HowItWorks-format">2</span>
+                            </div>
+                            <h3 class="text-center text-bold-500">Book</h3>
+                            <p class="content-sub-header">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                          </div>
+                          <div class="card-body HowItWorks-body">
+                            <div class="HowItWorks-head">
+                              <span class="HowItWorks-format">3</span>
+                            </div>
+                            <h3 class="text-center text-bold-500">Experience</h3>
+                            <p class="content-sub-header">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+              <div class="card-container">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-10 mt-5 mb-3">
+                            <div class="content-header lead text-bold-500">Discover Spaces We Love.</div>
+                          </div>
+                          <div class="col-2 mt-5 mb-3">
+                              <a href="#" class="content-link text-bold-500">View more</a>
+                           </div>
+                      </div>        
+                    </div>
+                    <!-- <div class="container-fluid"> -->
+                    <div class="row text-left" matchHeight="card">
+                      <!-- <div > -->
+                        <div *ngFor='let space of spaceQueryResult.items' class="col-lg-4 col-md-12 col-sm-12">
+                          <a [routerLink]="['/space-details/' + space.id]">
+                          <div class="card">
+                            <div class="card-content card-bg">
+                              <div class="card-img">
+                                <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                                <h4 class="card-title home-card-title">{{ space.price | currency : 'NGN' : 'symbol-narrow'}}</h4>
+                                <a class="btn btn-floating halfway-fab bg-warning"><i class="ft-heart"></i></a>
+                              </div>
+                              <div style="padding: 1.8rem .5rem 1rem .5rem;" class="card-body">
+                                <div class="row justify-content-between">
+                                  <div class="col-6">
+                                      <h3 class="home-card-text">{{space.name}}</h3>
+                                  </div>
+                  <div class="card-body home_body-pad">
+                                    <div class="row justify-content-between">
+                                      <div class="col-6">
+                                          <h3 class="home-card-text">Landmark Towers</h3>
+                                      </div>
+                                          <!-- <div class="col-3">
+                                            <ngb-rating max="5" [(rate)]="firstRating"></ngb-rating>
+                                          </div>
+                                          <div class="col-3">
+                                              <p><b>{{firstRating}}</b></p>
+                                          </div> -->
+                                    </div>
+                                <p class="card-text">{{space?.description}}</p>
+                                <div style="padding: 1rem 0 0 0;" class="card-footer">
+                                    <div class="row">
+                                        <div class="col-5">
+                                          <i class="fa fa-users"></i>
+                                          <span>&nbsp;Fits {{space?.size}} guests</span>
+                                        </div>
+                                        <div class="col-7">
+                                          <i class="fa fa-map-marker"></i>
+                                          <span>&nbsp;{{space?.locationAddress}}</span>
+                                        </div>
+
+                                      </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </a>
+                  </div>
+              </div></div>
+              <app-footer></app-footer>
+            </div>

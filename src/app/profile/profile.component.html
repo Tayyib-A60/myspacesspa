@@ -1,0 +1,545 @@
+<app-new-nav></app-new-nav>
+<div class="profile-container">
+  <div class="container-fluid">
+    <div class="row text-left">
+      <!--Nav orientation Starts-->
+      <div class="col-md-12 col-lg-12">
+        <div class="card">
+          <!-- <div class="card-header">
+            <h4 class="card-title">Nav orientation</h4>
+          </div> -->
+          <div class="card-content">
+            <div class="card-body">
+            <ngb-tabset type="pills" [orientation]="currentOrientation">
+                <ngb-tab>
+                    <ng-template ngbTabTitle>Your Bookings</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="card-container">
+                            <div class="row text-left" matchHeight="card">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                  <div class="card card-border">
+                                    <div class="card-content card-bg">
+                                      <h4 class="pt-2 mb-4 mt-2 ml-3 text-bold-700">Upcoming Bookings</h4>
+                                      <div class="row text-left ml-2" matchHeight="card">
+                                          <div *ngFor='let booking of upcomingReservations' class="col-lg-4 col-md-12 col-sm-12">
+                                              <div class="card">
+                                                <div class="card-content card-bg">
+                                                  <div class="card-img">
+                                                    <img class="card-img-top img-fluid card-radius" [src]="booking?.spaceImageUrl" alt="Card image cap">
+                                                    <h4 class="card-title home-card-title">{{ booking.totalPrice | currency : 'NGN' : 'symbol-narrow'}} per day</h4>
+                                                  </div>
+                                                  <div class="card-body card-body-pad">
+                                                    <div class="row justify-content-between">
+                                                      <div class="col-6">
+                                                          <h3 class="home-card-text">{{booking.spaceBooked.name}}</h3>
+                                                      </div>
+                                                    </div>
+                                                    <p class="card-text">{{booking?.bookingRef}}</p>
+                                                    <div class="card-footer card-footer-pad">
+                                                      <div class="row">
+                                                          <div class="col-5">
+                                                            <i class="fa fa-users"></i>
+                                                            <span>&nbsp;For {{booking?.noOfGuests}} Guests</span>
+                                                          </div>
+                                                          <div class="col-7">
+                                                            <i class="fa fa-map-marker"></i>
+                                                            <span>&nbsp;{{booking?.spaceLocation}}</span>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer card-footer-pad">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                              <span>
+                                                                {{booking.usingFrom | date}}
+                                                              </span>
+                                                            </div>
+                                                            <div class="col-6">
+                                                              <span>
+                                                                {{booking.usingTill | date}}
+                                                              </span>
+                                                            </div>
+                                                          </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          
+                                      </div>
+                                      <p *ngIf='upcomingReservations.length < 1' class="lead ml-3 mb-4">0 Bookings Found</p>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-container">
+                            <div class="card card-border">
+                                <div class="card-content card-bg">
+                                    <h4 class="pt-2 mb-3 mt-2 ml-3 text-bold-700">Previous Bookings</h4>
+                                  <div class="row text-left ml-2" matchHeight="card">
+                                      <div *ngFor='let booking of previousReservations' class="col-lg-4 col-md-12 col-sm-12">
+                                          <div class="card">
+                                            <div class="card-content card-bg">
+                                              <div class="card-img">
+                                                <img class="card-img-top img-fluid card-radius" [src]="booking?.spaceImageUrl" alt="Card image cap">
+                                                <h4 class="card-title home-card-title">NGN {{booking.totalPrice}}</h4>
+                                              </div>
+                                              <div class="card-body card-body-pad">
+                                                <div class="row justify-content-between">
+                                                  <div class="col-6">
+                                                      <h3 class="home-card-text">{{booking?.spaceName}}</h3>
+                                                  </div>
+                                                </div>
+                                                <p class="card-text">{{booking?.bookingRef}}</p>
+                                                <div class="card-footer card-footer-pad">
+                                                    <div class="row">
+                                                        <div class="col-5">
+                                                          <i class="fa fa-users"></i>
+                                                          <span>&nbsp;For {{booking?.noOfGuests}} Guests</span>
+                                                        </div>
+                                                        <div class="col-7">
+                                                          <i class="fa fa-map-marker"></i>
+                                                          <span>&nbsp;{{booking?.spaceLocation}}</span>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                                <div class="card-footer card-footer-pad">
+                                                    <div class="row">
+                                                      <div class="col-6">
+                                                        <span>
+                                                          {{booking.usingFrom | date}}
+                                                        </span>
+                                                      </div>
+                                                      <div class="col-6">
+                                                        <span>
+                                                          {{booking.usingTill | date}}
+                                                        </span>
+                                                      </div>
+                                                      </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      
+                                  </div>
+                                  <p *ngIf='previousReservations.length < 1' class="lead ml-3 mb-4">0 Bookings Found</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </ng-template>
+                  </ngb-tab>
+              <ngb-tab title="Profile">
+                <ng-template ngbTabContent>
+                  <div class="container-fluid">
+                    <div class="">
+                      <h4 class="pt-3 mb-3 mt-2 text-bold-700">Personal Information</h4>
+                      <div class="d-inline-flex flex-column mb-2 profile_album">
+                          <div class="fonticon-wrap"><i class="fa fa-camera"></i></div>
+                          <!-- <label class="fonticon-classname">fa-camera</label> -->
+                          <!-- <label class="fonticon-unit">f030</label> -->
+                          <a href="">Upload Photo</a>
+                      </div>  
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                          <div class="profile_card">
+                              <div class="form-group">
+                                  <label for="userinput1">First name</label>
+                                  <input type="text" id="userinput1" class="form-control" name="name" placeholder="Kayode">
+                                </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                          <div class="profile_card">
+                              <div class="form-group">
+                                  <label for="userinput1">Last name</label>
+                                  <input type="text" id="userinput1" class="form-control" name="name" placeholder="Kayode">
+                                </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                          <div class="profile_card">
+                              <div class="form-group">
+                                  <label for="userinput1">Email Address</label>
+                                  <input type="text" id="userinput1" class="form-control" name="name" placeholder="">
+                                </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="profile_card">
+                                <div class="form-group">
+                                    <label for="userinput1">Contact Number</label>
+                                    <input type="text" id="userinput1" class="form-control" name="name" placeholder="">
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="profile_card">
+                                <div class="form-group">
+                                    <label for="projectinput6">Gender</label>
+                                    <select id="projectinput6" name="budget" class="form-control">
+                                      <option value="0" selected="" disabled="">Select Gender</option>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                    </select>
+                                  </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                    <div class="profile_page-border mt-3">
+                      <h4 class="pt-3 text-bold-700">Social Links</h4>
+                      <div class="profile-sub-head">
+                        <p>234Spaces Venue Partners have work and meeting spaces that are available for short-term bookings.</p>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">Facebook</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="www.facebook.com/username">
+                                    </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">Twitter</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="www.twitter.com/username">
+                                    </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">LinkedIn</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="www.linkedin.com/username">
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">Instagram</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="www.instagram.com/username">
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                      <h4 class="mt-3 pt-3 mb-2 text-bold-700 profile_border_top">Security</h4>
+                      <div class="row mb-3">
+                          <div class="col-lg-4 col-md-12 col-sm-12 ">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">Old Password</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="old password">
+                                    </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">New Password</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="new password">
+                                    </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="profile_card">
+                                  <div class="form-group">
+                                      <label for="userinput1">LinkedIn</label>
+                                      <input type="text" id="userinput1" class="form-control" name="name" placeholder="www.linkedin.com/username">
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                        <button type="button" class="mt-3 mb-3 profile_btn">
+                            <!-- <i class="ft ft-search d-lg-none d-lg-inline-block"></i> -->
+                            <span class="">SAVE CHANGES</span>
+                          </button>
+                  </div>
+                </ng-template>
+              </ngb-tab>
+              <!-- <ngb-tab>
+                <ng-template ngbTabTitle>Your Spaces</ng-template>
+                <ng-template ngbTabContent>
+                  <div class="card-container">
+                      <div class="row text-left" matchHeight="card">
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="card">
+                              <div class="card-content card-bg">
+                                <div class="card-img">
+                                  <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                                  <h4 class="card-title home-card-title">NGN 3,000 per day</h4>
+                                </div>
+                                <div class="card-body card-body-pad">
+                                    <div class="col6">
+                                        <h3 class="home-card-text">Landmark Towers</h3>
+                                    </div>
+                                  <p class="card-text">Creative workspace in Lekki overlooking the atlantic ocean.</p>
+                                  <div  class="card-footer">
+                                      <div class="row">
+                                          <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <i class="fa fa-users"></i>
+                                            <span>&nbsp;Fits 25 guests</span>
+                                          </div>
+                                          <div class="col-lg-6 col-md-6 col-sm-12 card-footer-pad">
+                                            <i class="fa fa-map-marker"></i>
+                                            <span>&nbsp;Lekki Admiralty road</span>
+                                          </div>
+                                        </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="card">
+                                <div class="card-content card-bg hct">
+                                  <div class="card-img">
+                                    <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                                    <h4 class="card-title home-card-title">NGN 3,000 per day</h4>
+                                  </div>
+                                  <div class="card-body card-body-pad">
+                                      <div class="col6">
+                                          <h3 class="home-card-text">Landmark Towers</h3>
+                                      </div>
+                                    <p class="card-text">Creative workspace in Lekki overlooking the atlantic ocean.</p>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                              <i class="fa fa-users"></i>
+                                              <span>&nbsp;Fits 25 guests</span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 card-footer-pad">
+                                              <i class="fa fa-map-marker"></i>
+                                              <span>&nbsp;Lekki Admiralty road</span>
+                                            </div>
+                                          </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <p>Conflict begins here</p>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="card">
+                                  <div class="card-content card-bg hct">
+                                    <div class="card-img">
+                                      <img class="card-img-top img-fluid card-radius" src="assets/img/photos/14.jpg" alt="Card image cap">
+                                      <h4 class="card-title home-card-title">NGN 3,000 per day</h4>
+                                    </div>
+                                    <div class="card-body card-body-pad">
+                                        <div class="col6">
+                                            <h3 class="home-card-text">Landmark Towers</h3>
+                                        </div>
+                                      <p class="card-text">Creative workspace in Lekki overlooking the atlantic ocean.</p>
+                                      <div class="card-footer">
+                                          <div class="row">
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <i class="fa fa-users"></i>
+                                                <span>&nbsp;Fits 25 guests</span>
+                                              </div>
+                                              <div class="col-lg-6 col-md-6 col-sm-12 card-footer-pad">
+                                                <i class="fa fa-map-marker"></i>
+                                                <span>&nbsp;Lekki Admiralty road</span>
+                                              </div>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-content card-album">
+                                        <i class="fa fa-plus-square fa-3x"></i>
+                                        <p><a href="">Add Space</a></p>
+                                      
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                    
+                  </ng-template>
+                </ngb-tab> -->
+                <!-- <ngb-tab>
+                  <ng-template ngbTabTitle>Messages</ng-template>
+                  <ng-template ngbTabContent>
+                      <div class="card-container">
+                        <div class="row text-left" matchHeight="card">
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card">
+                              <div class="row chat_container">
+                                <div class="col-4 chat_container-right">
+                                      <div class="row p-2">
+                                          <div class="col-12">
+                                              <h6 class="chat_head">All Messages</h6>
+                                          </div>
+                                      </div>
+                                      <div class="row chat_container-top pt-3">
+                                          <div class="col-2">
+                                              <img src="assets/img/photos/15.jpg" height="45rem" width="45rem" class="rounded-circle mr-2" alt="">
+                                          </div>
+                                          <div class="col-7">
+                                              <h6 class="chat_head pt-2">Folakemi Shobowale</h6>
+                                          </div>
+                                          <div class="col-3">
+                                              <p class="pt-2">3:52am</p>
+                                          </div>
+                                          <p class="chat_sub_head pr-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero vitae, sit voluptatibus quo vel quaerat id amet? Porro iste</p>
+                                      </div>
+                                      <div class="row chat_container-top chat_border-1 pt-3">
+                                          <div class="col-2">
+                                              <img src="assets/img/photos/15.jpg" height="45rem" width="45rem" class="rounded-circle mr-2" alt="">
+                                          </div>
+                                          <div class="col-7">
+                                              <h6 class="chat_head pt-2">Folakemi Shobowale</h6>
+                                          </div>
+                                          <div class="col-3">
+                                              <p class="pt-2">3:52am</p>
+                                          </div>
+                                          <p class="chat_sub_head pr-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero vitae, sit voluptatibus quo vel quaerat id amet? Porro iste</p>
+                                      </div>
+                                      <div class="row chat_container-top chat_border-1 pt-3">
+                                          <div class="col-2">
+                                              <img src="assets/img/photos/15.jpg" height="45rem" width="45rem" class="rounded-circle mr-2" alt="">
+                                          </div>
+                                          <div class="col-7">
+                                              <h6 class="chat_head pt-2">Folakemi Shobowale</h6>
+                                          </div>
+                                          <div class="col-3">
+                                              <p class="pt-2">3:52am</p>
+                                          </div>
+                                          <p class="chat_sub_head pr-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero vitae, sit voluptatibus quo vel quaerat id amet? Porro iste</p>
+                                      </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="row chat_container-bot p-2">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <img src="assets/img/photos/15.jpg" height="45rem" width="45rem" class="rounded-circle mr-2" alt="">
+                                                <h6 class="chat_head">Folakemi Shobowale</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row chat_container-top">
+                                      <div class="col-12">
+                                          <div class="d-flex justify-content-end pt-3">
+                                              <h6 class="chat_head">Folakemi Shobowale<span class="h6 pl-3">3.52am</span></h6>
+                                            </div>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end pt-2">
+                                        <div class="row">
+                                          <div class="col-6"></div>
+                                          <div class="col-6">
+                                              <p class="chat_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem maxime voluptate ipsa esse rem dolores consequatur.</p>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-start pt-2">
+                                        <img src="assets/img/photos/15.jpg" height="45rem" width="45rem" class="rounded-circle mr-2" alt="">
+                                        <h6 class="chat_head pt-2">Folakemi Shobowale<span class="h6 pl-3">3.52am</span></h6>
+                                    </div>
+                                    <div class="d-flex justify-content-end pt-2">
+                                        <div class="row">
+                                          <div class="col-6">
+                                              <p class="chat_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem maxime voluptate ipsa esse rem dolores consequatur.</p>
+                                          </div>
+                                          <div class="col-6"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <h6 class="chat_head">Folakemi Shobowale<span class="h6 pl-3">3.52am</span></h6>
+                                      </div>
+                                    <div class="d-flex justify-content-end pt-2">
+                                        <div class="row">
+                                          <div class="col-6"></div>
+                                          <div class="col-6">
+                                              <p class="chat_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem maxime voluptate ipsa esse rem dolores consequatur.</p>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2 mb-3">
+                                        <div class="space_input">
+                                            <span class="space_hihlight">
+                                                <i class="icon-emoticon-smile mr-2"></i>
+                                                <input type="text" class="" placeholder="Type your message here...">
+                                                <i class="ft-image"></i>
+                                            </span>
+                                            <span></span>
+                                      </div>
+                                      <div>
+                                          <button type="button" class="btn btn-primary btn-raised  ml-3 mb-0  space_btn">SEND</button>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      </div>
+                  </ng-template>
+                </ngb-tab> -->
+                <!-- <ngb-tab>
+                  <ng-template ngbTabTitle>Your Bookings</ng-template>
+                  <ng-template ngbTabContent>
+                      <div class="card-container">
+                          <div class="row text-left" matchHeight="card">
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="card card-border">
+                                  <div class="card-content card-bg">
+                                    <h4 class="pt-2 mb-4 mt-2 ml-3 text-bold-700">Upcoming Bookings</h4>
+                                    <p class="lead ml-3 mb-4">0 Bookings Found</p>
+                                  </div>
+                                </div>
+                              </div>
+                            <p>Conflict ends here</p>
+                          </div>
+                          <div class="col-lg-4 col-md-12 col-sm-12">
+                              <div class="card">
+                                  <div class="card-content card-album">
+                                      <i class="fa fa-plus-square fa-3x"></i>
+                                      <p><a href="">Add Space</a></p>
+                                    
+                                  </div>
+                                </div>
+                          </div>
+                      </div>
+                  
+                </ng-template>
+              </ngb-tab> -->
+              <!-- <ngb-tab>
+                <ng-template ngbTabTitle>Messages</ng-template>
+                <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+                  <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+                  craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+                  cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+                  yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+                  shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+                  sint qui sapiente accusamus tattooed echo park.</p>
+                </ng-template>
+              </ngb-tab> -->
+              
+              
+            </ngb-tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,199 @@
+<section class="basic-elements">
+	<div class="row text-left">
+		<div class="col-sm-12">
+			<div class="content-header">Add Space</div>
+        </div>
+    </div>
+	<div class="row text-left">
+		<div class="col-sm-12">
+			<app-autocomplete (setLocationDetails)='getAddressDetails($event)' (setAddress)="getAddress($event)" adressType="geocode"></app-autocomplete>
+        </div>
+    </div>
+    <div class="row text-left">
+		<div class="col-sm-12">
+			<agm-map [latitude]='latitude' [longitude]='longitude' (mapClick)='onLocationSelect($event)'>
+				<agm-marker (markerClick)='onPinSelect($event)' [latitude]='latitude' [longitude]='longitude'></agm-marker>
+			</agm-map>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-content">
+                    <div class="px-3">
+						<div class="row">
+							<div class="col-xl-12 col-lg-12 col-md-12">
+								<fieldset class="form-group">
+									<label for="description">Space type</label>
+									<ng-select [items]="spaceTypes" [virtualScroll]="true" bindLabel="type" bindValue="id" placeholder="Select space type"
+									[(ngModel)]="selectedSpaceType">
+									</ng-select>
+								</fieldset>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-12 col-lg-12 col-md-12">
+								<fieldset class="form-group">
+									<label for="description">Pricing Option</label>
+									<ng-select [items]="pricingOptions" [virtualScroll]="true" bindLabel="label" bindValue="type" placeholder="Select pricing option"
+									[(ngModel)]="selectedPricingOption">
+									</ng-select>
+								</fieldset>
+							</div>
+						</div>
+                    	<form *ngIf='spaceToEdit || !editMode' (ngSubmit)='createSpace()' [formGroup]="spaceForm" class="form">
+							<div class="form-body">
+		                        <div class="row">
+		                            <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="name">Space name</label>
+		                                    <input formControlName="name" type="text" class="form-control" name="name" id="name">
+		                                </fieldset>
+		                            </div>
+		                            <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="minimumTerm">Minimum Term</label>
+		                                    <input formControlName="minimumTerm" type="text" name="minimumTerm" class="form-control" id="minimumTerm">
+		                                </fieldset>
+									</div>
+									<div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="locationAddress">Location</label>
+		                                    <input disabled='true' formControlName="locationAddress" type="text" name="locationAddress" class="form-control" id="locationAddress">
+		                                </fieldset>
+		                            </div>
+		                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="long">Longitude</label>
+		                                    <input disabled='true' formControlName="long" type="text" name="long" class="form-control" id="long">
+		                                </fieldset>
+		                            </div>
+		                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="lat">Latitude</label>
+		                                    <input disabled='true' formControlName="lat" type="text" name="lat" class="form-control" id="lat">
+		                                </fieldset>
+		                            </div>
+		                            <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="size">Size</label>
+		                                    <input formControlName="size" type="number" name="size" class="form-control" id="size" >
+		                                </fieldset>
+		                            </div>
+		                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="price">Price</label>
+		                                    <input formControlName="price" type="number" name="price" class="form-control" id="price" >
+		                                </fieldset>
+		                            </div>
+		                            <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+		                                <fieldset class="form-group">
+		                                    <label for="discount">Discount</label>
+		                                    <input formControlName="discount" type="number" name="discount" class="form-control" id="discount" >
+		                                </fieldset>
+		                            </div>
+								</div>
+								
+								<div class="row">
+									<div class="col-xl-12 col-lg-12 col-md-12">
+										<fieldset class="form-group">
+											<label for="description">Description</label>
+											<textarea type='text' formControlName="description" class="form-control" name="description" id="description" rows="8"></textarea>
+										</fieldset>                           
+									</div>
+								</div>
+								<div *ngIf='editMode && spaceToEdit' class="form-group" formArrayName="amenities">
+									<div class="row" *ngFor="let amenity of spaceForm.get('amenities')['controls']; let i = index"
+										[formGroupName]="i">
+										<div class="col-xl-5 col-lg-5 col-md-5">
+											<fieldset class="form-group">
+													<label for="amenity">Amenity</label>
+													<input disabled='true' formControlName="name" type="text" class="form-control" placeholder="Amenity (required)" name="amenity" id="amenity" >
+											</fieldset>                              
+										</div>
+										<div class="col-xl-5 col-lg-5 col-md-5">
+											<fieldset class="form-group">
+												<label for="price">Price</label>
+												<input disabled='true' formControlName="price" type='number' class="form-control" placeholder="Price (required)" name="price" id="price">
+											</fieldset>
+										</div>	
+										<div class="col-xl-2 col-lg-2 col-md-2">
+											<fieldset class="form-group">
+												<button class="form-control" type="button" (click)='removeAmenity(i)' class="btn btn-raised mr-1 btn-danger btn-primary btn-sm">X</button>
+											</fieldset>
+										</div>	
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+										<button  type="submit" class="btn btn-raised mr-1 btn-round btn-primary btn-large">{{ editMode? 'Update Space' : 'Create Space'}}</button>
+										<button *ngIf='editMode' type="button" (click)="open(content)" class="btn btn-raised mr-1 btn-round btn-primary btn-large">Add amenities</button>
+									</div>
+							</div>
+					<div class="m-auto">
+						<div class="card-content">
+							<ng-template #content let-c="close" let-d="dismiss">
+								<div class="modal-header">
+								<h4 class="modal-title">Add amenities</h4>
+								<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="modal-body">
+									<div *ngIf='editMode && spaceToEdit' class="form-group" formArrayName="amenities">
+									<div class="row" *ngFor="let amenity of spaceForm.get('amenities')['controls']; let i = index"
+										[formGroupName]="i">
+										<div class="col-xl-5 col-lg-5 col-md-5">
+											<fieldset class="form-group">
+													<label for="amenity">Amenity</label>
+													<input formControlName="name" type="text" class="form-control" placeholder="Amenity (required)" name="amenity" id="amenity" >
+											</fieldset>                              
+										</div>
+										<div class="col-xl-5 col-lg-5 col-md-5">
+											<fieldset class="form-group">
+												<label for="price">Price</label>
+												<input formControlName="price" type='number' class="form-control" placeholder="Price (required)" name="price" id="price">
+											</fieldset>
+										</div>	
+										<div class="col-xl-2 col-lg-2 col-md-2">
+											<fieldset class="form-group">
+												<button class="form-control" type="button" (click)='removeAmenity(i)' class="btn btn-raised mr-1 btn-danger btn-primary btn-sm">X</button>
+											</fieldset>
+										</div>	
+									</div>
+									</div>
+										<div>
+											<div class="row">
+												<div class="col-xl-3 col-lg-3 col-md-3">
+												<fieldset class="form-group">
+													<button (click)='saveAmenities()' type="button" class="btn btn-raised px-2 mb-0" style="background-color: #565f73; color: #f3f3f3">
+												<span class="d-lg-inline-block space_btn">Save</span>
+											</button>
+												</fieldset>
+												</div>	
+												<div class="col-xl-3 col-lg-3 col-md-3">
+												<fieldset class="form-group">
+													<button (click)='addAmenity()' type="button" class="btn btn-raised px-2 mb-0" style="background-color: #565f73; color: #f3f3f3">
+												<span class="d-lg-inline-block space_btn">Add More</span>
+											</button>
+												</fieldset>
+												</div>	
+											</div>
+										</div>
+								</div>
+								<div class="modal-footer">
+								<button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+								</div>
+							</ng-template>
+						</div>
+					</div>
+		                    </div>
+						</form>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</section>
