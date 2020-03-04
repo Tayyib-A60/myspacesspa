@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://myspaces.herokuapp.com/api'
+  url: 'http://localhost:5000/api'
 };
 
 /*

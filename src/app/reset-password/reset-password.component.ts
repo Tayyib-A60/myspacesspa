@@ -7,6 +7,7 @@ import * as userReducer from '../state/user.reducers';
 import * as userActions from '../state/user.actions';
 import * as userSelectors from '../state/user.selector';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotificationService } from '../services/notification.service';
 
 const jwthelper = new JwtHelperService();
 @Component({
@@ -27,7 +28,8 @@ export class ResetPasswordComponent implements OnInit {
               private formBuilder: FormBuilder,
               private userService: UserService,
               private store: Store<userReducer.UserState>,
-              private router: Router) { }
+              private router: Router,
+              private notification: NotificationService) { }
 
   ngOnInit() {
     this.forgotPasswordPage = this.route.snapshot.routeConfig.path === 'forgot-password'? true: false;
@@ -38,11 +40,14 @@ export class ResetPasswordComponent implements OnInit {
 
   private initializeForm() {
     this.route.queryParams.subscribe(res => {
+      sessionStorage.setItem('token', res['token']);
       const token = res['token'];
       this.payload = jwthelper.decodeToken(token);
       this.expired = jwthelper.isTokenExpired(token);
+        
       if(this.resetPasswordPage || this.confirmEmail) {
           if(this.expired) {
+            this.notification.typeInfo('Your token has expired, please reset your password', 'Token Expired');
             this.router.navigate(['../'], {relativeTo: this.route});
           }
       }
@@ -65,6 +70,8 @@ export class ResetPasswordComponent implements OnInit {
               id: this.payload['groupsid'],
               role: this.payload['role']
             }
+            console.log(this.payload);
+            
             this.store.dispatch(new userActions.ConfirmEmail(user));
         }
     }

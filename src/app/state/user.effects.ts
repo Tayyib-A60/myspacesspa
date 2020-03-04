@@ -121,7 +121,8 @@ export class UserEffects {
                     return new userActions.ConfirmEmailSuccess(res.toString());
                 }),
                 catchError(err => {
-                    this.notification.typeError('Unable to confirm your email, please check your internet connection', 'Failed');
+                    // if(err.error !== null || undefined)
+                    //     this.notification.typeError(`${err.error}`, 'Failed');
                     return of(new userActions.ConfirmEmailFailure(err));
                 })
             )
@@ -134,11 +135,11 @@ export class UserEffects {
         mergeMap((merchantToConfirm: any) =>
             this.userService.confirmAsMerchant(merchantToConfirm).pipe(
                 map(res => {
-                    this.notification.typeSuccess('Your email has been confirmed', 'Success');
+                    this.notification.typeSuccess('Merchant has been confirmed', 'Success');
                     return new userActions.ConfirmAsMerchantSuccess(res.toString())
                 }),
                 catchError(err => {
-                    this.notification.typeError('Unable to confirm your email, please check your internet connection', 'Failed');
+                    this.notification.typeError('Unable to confirm merchant, please check your internet connection', 'Failed');
                 return of(new userActions.ConfirmAsMerchantFailure(err));
                 })
             )

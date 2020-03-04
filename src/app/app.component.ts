@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationService } from './services/notification.service';
 
 const jwthelper = new JwtHelperService();
 @Component({
@@ -11,16 +12,22 @@ const jwthelper = new JwtHelperService();
 export class AppComponent implements OnInit {
   payload: any;
   expired: boolean;
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private notification: NotificationService) {
 
   }
   ngOnInit() {
-      const token = sessionStorage.getItem('currentUser')? JSON.parse(sessionStorage.getItem('currentUser')).token : null;
-      this.payload = jwthelper.decodeToken(token);
-      this.expired = jwthelper.isTokenExpired(token);
+    
+      const token = sessionStorage.getItem('currentUser')? JSON.parse(sessionStorage.getItem('currentUser')).token : sessionStorage.getItem('token')? sessionStorage.getItem('token') : null;
+      console.log(token.toString());
+      
+      this.payload = jwthelper.decodeToken(token.toString());
+      this.expired = jwthelper.isTokenExpired(token.toString());
 
       if(this.expired) {
+        this.notification.typeInfo('Your session has ended, please login to continue', 'Session expired');  
         sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('token');
         this.router.navigate(['/']);
       }
   }

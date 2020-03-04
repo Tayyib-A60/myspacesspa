@@ -17,6 +17,7 @@
                 <a [routerLink]="['/map-space']" class="nav-link position-relative"><span class="nav-name">Discover Spaces</span></a>
                 <a *ngIf='merchantIsAuthenticated()' [routerLink]="['/admin']" class="nav-link position-relative"><span class="nav-name">Merchant Dashboard</span></a>
                 <a *ngIf='anyUserIsAuthenticated()' [routerLink]="['/profile']" class="nav-link position-relative"><span class="nav-name">Dashboard</span></a>
+                <!-- <a [routerLink]="['/confirm-email']" class="nav-link position-relative"><span class="nav-name">Confirm Email</span></a> -->
                 <a *ngIf='!merchantIsAuthenticated()' [routerLink]="['/sign-up-as-merchant']" class="nav-link position-relative"><span class="nav-name">List-your-space</span></a>
                 <div class="dropdown-divider"></div>
                 <!-- <a [routerLink]="['/admin']" class="nav-link position-relative"><span class="nav-name">{{currentUser['roles'] == 'Merchant'? 'Merchant': 'Admin'}}</span></a> -->
